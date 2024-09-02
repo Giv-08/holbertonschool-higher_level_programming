@@ -1,3 +1,4 @@
 #!/usr/bin/python3
 number = 3.14159
-f"${number:.2f}"
+n = f"${number:.2f}"
+print(n)
