@@ -4,5 +4,3 @@ for num in range(100):
         print("{:02d}".format(num), end=', ')
     elif num == 99:
         print("{}".format(num), end='\n')
-
-# add new line and use prefix 0
