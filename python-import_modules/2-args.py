@@ -2,12 +2,11 @@
 import sys
 argv = sys.argv
 if __name__ == "__main__":
-    i = 0
-    for i in range(len(argv)):
-        converted_argv = int(argv[i])
-        if converted_argv == 0:
-            print("{} argument.".format(i), end="\n")
-        if converted_argv > 0:
-            print("{} arguments:".format(i), end="\n")
-            print("{}: {}".format(i, argv[i]), end="\n")
-        i = i + 1
+
+# assign len(argv) to argc variable
+# - 1 for excluding the script name
+#  if argc == 0
+# else if argc == 1
+# and else print number of all argv
+# if argc > 0 then loop all argc start from 1 to exclud script name
+# print followed the pattern
