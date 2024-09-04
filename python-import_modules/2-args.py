@@ -4,9 +4,10 @@ argv = sys.argv
 if __name__ == "__main__":
     i = 0
     for i in range(len(argv)):
-        if argv[i] == 0:
+        converted_argv = int(argv[i])
+        if converted_argv == 0:
             print("{} argument.".format(i), end="\n")
-        if argv[i] > 0:
+        if converted_argv > 0:
             print("{} arguments:".format(i), end="\n")
             print("{}: {}".format(i, argv[i]), end="\n")
         i = i + 1
