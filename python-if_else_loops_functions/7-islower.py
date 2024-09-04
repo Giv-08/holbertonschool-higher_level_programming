@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def islower(c):
-    if not isinstance(c, str):
+    if not isinstance(c, str) and len(c) != 1:
         print("Traceback (most recent call last):")
         return None
     elif c.islower():
