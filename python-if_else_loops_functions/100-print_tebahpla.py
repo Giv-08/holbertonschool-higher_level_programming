@@ -8,4 +8,4 @@ for i in sorted_alphabets:
             result += i.lower()
         else:
             result += i
-print(result)
+print("{}".format(result))
