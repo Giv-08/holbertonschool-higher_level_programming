@@ -2,9 +2,10 @@
 alphabets = [chr(a) for a in range(65, 91)]
 
 sorted_alphabets = sorted(alphabets, reverse=True)
-
+result = ""
 for i in sorted_alphabets:
         if ord(i) % 2 == 0:
-            print(i.lower(), end="")
+            result += i.lower()
         else:
-            print(i, end="")
+            result += i
+print(result)
