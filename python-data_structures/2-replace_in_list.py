@@ -7,5 +7,5 @@ def replace_in_list(my_list, idx, element):
             my_list[i] = element
             new = my_list.copy()
             return (new)
-        elif i < 0 or i >= len(my_list):
+        if i < 0 or i >= len(my_list):
             return my_list
