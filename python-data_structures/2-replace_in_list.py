@@ -5,6 +5,7 @@ def replace_in_list(my_list, idx, element):
             # my_list.remove(my_list[i])
             # my_list.insert(i, element)
             my_list[i] = element
-            return (my_list)
+            new = my_list.copy()
+            return (new)
         elif i < 0 or i >= len(my_list):
             return my_list
