@@ -20,6 +20,13 @@ def roman_to_int(roman_string):
         elif roman_string.startswith('M'):
             i += 1000
         return i
+    # loop string in reversed
+    # assign current to dict values[c] == key
+    # if current less than prev
+    # total - current
+    # or
+    # totle + current and prev equals current
+
     # values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     # total = 0
     # prev = 0
