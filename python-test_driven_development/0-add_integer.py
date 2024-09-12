@@ -4,6 +4,8 @@ This module provides a function add_integer(a, b=98) that adds two integers.
 If a or b are floats, they will be casted into integers before the addition.
 TypeError is raised if a or b are not integer or float type.
 """
+
+
 def add_integer(a, b=98):
     """
     Adds two integers
