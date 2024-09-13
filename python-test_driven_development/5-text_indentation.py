@@ -22,11 +22,17 @@ def text_indentation(text):
     """
     if isinstance(text, str):
         result = ""
-        for i in range(len(text)):
+        i = 0
+        while i < len(text):
             result += text[i]
-                # print("{}".format(text[i]), end="")
             if text[i] == '.' or text[i] == '?' or text[i] == ':':
-                result += "\n"
+                if i + 1 < len(text) and text[i + 1] == ' ':
+                    result += "\n\n"
+                    while i + 1 < len(text) and text[i + 1] == ' ':
+                        i += 1
+                else:
+                    result += "\n\n"
+            i += 1
         print(result.strip())
     else:
         raise TypeError("text must be a string")
