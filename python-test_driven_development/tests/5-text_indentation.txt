@@ -1,0 +1,70 @@
+The ``text_indentation`` module
+
+Using ``text_indentation``
+
+First, import ``text_indentation`` from the ``5-text_indentation`` file:
+
+    >>> text = __import__('5-text_indentation').print_square
+
+Examples:
+---------
+Add a string as argument(text):
+
+    >>> text("Do you have any pet? If you do, I would love to play with it.")
+    Do you have any pet?
+    If you do, I would love to play with it.
+
+Test for Type errors:
+---------------------
+Add integer or floar as argument(text)
+
+    >>> text(4)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text(5.4)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+
+Add a negative integer or float as argument(text):
+
+    >>> text(-9)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text(-5.6)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Miss required arguments:
+
+     >>> text()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+Add two arguments or more
+
+    >>> text("Do you have any pet?", "If you do, I would love to play with it.")
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() takes 1 positional argument but 2 were given
+
+Handle infinity:
+
+    >>> text(float('inf'))
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Handle NaN:
+
+    >>> text(float('NaN'))
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
