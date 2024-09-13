@@ -27,9 +27,9 @@ Add a negative number as argument(size)
 
 Size is 0
     >>> square(0)
-    Traceback (most recent call last):
-    ...
-    ValueError: size must be >= 0
+
+
+    size must be >= 0
 
 Add float as argument(size):
 
