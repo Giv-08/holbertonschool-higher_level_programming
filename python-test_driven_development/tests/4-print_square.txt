@@ -18,13 +18,32 @@ Add integer as size:
 
 Test for Type errors:
 ---------------------
-Add float as argument:
+Add a negative number as argument(size)
+
+    >>> square(-4)
+    Traceback (most recent call last):
+    ...
+    ValueError: size must be >= 0
+
+Size is 0
+    >>> square(0)
+    Traceback (most recent call last):
+    ...
+    ValueError: size must be >= 0
+
+Add float as argument(size):
 
     >>> square(2.5)
     Traceback (most recent call last):
     ...
     TypeError: size must be an integer
 
+Add a negative float as argument(size):
+
+    >>> square(-2.5)
+    Traceback (most recent call last):
+    ...
+    ValueError: size must be >= 0
 Miss required arguments:
 
     >>> square()
@@ -32,7 +51,7 @@ Miss required arguments:
     ...
     TypeError: print_square() missing 1 required positional argument: 'size'
 
-Argument is not integer
+Size is not integer
 
     >>> square("brown")
     Traceback (most recent call last):
