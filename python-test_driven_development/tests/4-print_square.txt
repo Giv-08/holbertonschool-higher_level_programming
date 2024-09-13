@@ -28,7 +28,6 @@ Add a negative number as argument(size)
 Size is 0
     >>> square(0)
 
-
     size must be >= 0
 
 Add float as argument(size):
@@ -44,6 +43,7 @@ Add a negative float as argument(size):
     Traceback (most recent call last):
     ...
     ValueError: size must be >= 0
+
 Miss required arguments:
 
     >>> square()
@@ -53,10 +53,10 @@ Miss required arguments:
 
 Size is not integer
 
-    >>> square("brown")
+    >>> square("3")
     Traceback (most recent call last):
     ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: size must be an integer
 
 Add two arguments or more
 
