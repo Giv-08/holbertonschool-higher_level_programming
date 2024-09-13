@@ -31,7 +31,7 @@ def text_indentation(text):
                     while i + 1 < len(text) and text[i + 1] == ' ':
                         i += 1
                 else:
-                    result += "\n\n"
+                    result += "\n"
             i += 1
         print(result.strip())
     else:
