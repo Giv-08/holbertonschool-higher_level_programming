@@ -34,4 +34,4 @@ def text_indentation(text):
                 i += 1
         i += 1
     result = "".join(result).rstrip()
-    print(result[:-3], end="")
+    print(result, end="")
