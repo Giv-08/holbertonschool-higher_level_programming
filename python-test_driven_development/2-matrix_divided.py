@@ -22,8 +22,7 @@ def matrix_divided(matrix, div):
     TypeError: the matrix must be string or float type
     ZeroDivisionError: can't be divided by 0
     """
-    # if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-    if not isinstance(matrix, list):
+    if not isinstance(matrix, list) or not all(isinstance(a, list) for a in matrix):
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
     if matrix != matrix:
         raise TypeError("Each row of the matrix must have the same size")
