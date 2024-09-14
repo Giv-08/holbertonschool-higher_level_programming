@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-# """
-# This module provides a function print_square(size)
-# that print a square of '#'
-# size has to be an integer or float
-# TypeError is raised if size is not integer type.
-# """
+"""
+This module provides a function print_square(size)
+that print a square of '#'
+size has to be an integer or float
+TypeError is raised if size is not integer type.
+"""
 
 
 def matrix_divided(matrix, div):
