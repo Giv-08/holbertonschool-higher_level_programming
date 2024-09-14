@@ -4,67 +4,66 @@ Using ``text_indentation``
 
 First, import ``text_indentation`` from the ``5-text_indentation`` file:
 
-    >>> text = __import__('5-text_indentation').print_square
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
 
 Examples:
 ---------
-Add a string as argument(text):
+Add a string as an argument (text):
 
-    >>> text("Do you have any pet? If you do, I would love to play with it.")
+    >>> text_indentation("Do you have any pet? If you do, I would love to play with it.")
     Do you have any pet?
     If you do, I would love to play with it.
 
 Test for Type errors:
 ---------------------
-Add integer or floar as argument(text)
+Add an integer or float as an argument (text):
 
-    >>> text(4)
+    >>> text_indentation(4)
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
 
-    >>> text(5.4)
+    >>> text_indentation(5.4)
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
 
+Add a negative integer or float as an argument (text):
 
-Add a negative integer or float as argument(text):
-
-    >>> text(-9)
+    >>> text_indentation(-9)
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
 
-    >>> text(-5.6)
+    >>> text_indentation(-5.6)
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
 
 Miss required arguments:
 
-     >>> text()
+    >>> text_indentation()
     Traceback (most recent call last):
     ...
     TypeError: text_indentation() missing 1 required positional argument: 'text'
 
-Add two arguments or more
+Add two arguments or more:
 
-    >>> text("Do you have any pet?", "If you do, I would love to play with it.")
+    >>> text_indentation("Do you have any pet?", "If you do, I would love to play with it.")
     Traceback (most recent call last):
     ...
     TypeError: text_indentation() takes 1 positional argument but 2 were given
 
 Handle infinity:
 
-    >>> text(float('inf'))
+    >>> text_indentation(float('inf'))
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
 
 Handle NaN:
 
-    >>> text(float('NaN'))
+    >>> text_indentation(float('NaN'))
     Traceback (most recent call last):
     ...
     TypeError: text must be a string
