@@ -12,6 +12,7 @@ Add a string as an argument (text):
 
     >>> text_indentation("Do you have any pet? If you do, I would love to play with it.")
     Do you have any pet?
+
     If you do, I would love to play with it.
 
 Test for Type errors:
