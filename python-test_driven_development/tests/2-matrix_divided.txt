@@ -10,13 +10,13 @@ First, import ``matrix_divided`` from the ``2-matrix_divided`` file:
 
 Examples:
 ---------
-Add list of integer and integer as div:
+Add a list of integers with an integer as div:
 
     >>> matrix = [[1, 2, 3], [4, 5, 6]]
     >>> matrix_divided(matrix, 3)
     [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
 
-Add a list of integer and integer as div:
+Add a list of integers with a float as div:
 
     >>> matrix_divided(matrix, 3.3)
     [[0.3, 0.61, 0.91], [1.21, 1.52, 1.82]]
@@ -34,13 +34,13 @@ Handle NaN:
     >>> matrix_divided(matrix, float('NaN'))
     [[nan, nan, nan], [nan, nan, nan]]
 
-Handle negative number:
+Handle negative numbers:
 
     >>> matrix_divided(matrix, -8)
     [[-0.12, -0.25, -0.38], [-0.5, -0.62, -0.75]]
 
 Test for Type Errors:
---------------------
+----------------------
 
 Miss required arguments:
 
@@ -63,23 +63,14 @@ Add string as div:
     ...
     TypeError: div must be a number
 
-Add only on argument:
+Add only one argument:
 
-    >>> matrix_divided("3")
+    >>> matrix_divided("3", 3)
     Traceback (most recent call last):
     ...
-    TypeError: matrix_divided() missing 1 required positional argument: 'div'
-
-    >>> matrix_divided(3)
-    Traceback (most recent call last):
-    ...
-    TypeError: matrix_divided() missing 1 required positional argument: 'div'
-
-
-Add a list of interger with no div:
+    TypeError: matrix_divided() missing 1 required positional argument: 'matrix'
 
     >>> matrix_divided(matrix)
-    [[1, 2, 3], [4, 5, 6]]
     Traceback (most recent call last):
     ...
     TypeError: matrix_divided() missing 1 required positional argument: 'div'
