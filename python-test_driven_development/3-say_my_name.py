@@ -16,7 +16,7 @@ def say_my_name(first_name, last_name=""):
     last_name: string or default as empty string
 
     Returns:
-    str: first name and last name
+    None
 
     Raises:
     TypeError: If first_name or last_name is not string
