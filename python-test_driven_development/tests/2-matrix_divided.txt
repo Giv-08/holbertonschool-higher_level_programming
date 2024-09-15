@@ -21,11 +21,6 @@ Add a list of integer and integer as div:
     >>> matrix_divided(matrix, 3.3)
     [[0.3, 0.61, 0.91], [1.21, 1.52, 1.82]]
 
-Add a list of interger with no div:
-
-    >>> matrix_divided(matrix)
-    [[1, 2, 3], [4, 5, 6]]
-
 Handle infinity:
 
     >>> matrix_divided(matrix, float('inf'))
@@ -43,6 +38,9 @@ Handle negative number:
 
     >>> matrix_divided(matrix, -8)
     [[-0.12, -0.25, -0.38], [-0.5, -0.62, -0.75]]
+
+Test for Type Errors:
+--------------------
 
 Miss required arguments:
 
@@ -73,6 +71,15 @@ Add only on argument:
     TypeError: matrix_divided() missing 1 required positional argument: 'div'
 
     >>> matrix_divided(3)
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+
+Add a list of interger with no div:
+
+    >>> matrix_divided(matrix)
+    [[1, 2, 3], [4, 5, 6]]
     Traceback (most recent call last):
     ...
     TypeError: matrix_divided() missing 1 required positional argument: 'div'
