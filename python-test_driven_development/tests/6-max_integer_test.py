@@ -47,9 +47,9 @@ class TestMaxInteger(unittest.TestCase):
         """Test a list with infinite values"""
         self.assertEqual(max_integer([11, float('inf'), 33, 44]), 33)
 
-    # def test_inf(self):
-    #     """Test a list with NaN values"""
-    #     self.assertEqual(max_integer([11, float('NaN'), 33, 44]), 33)
+    def test_nan(self):
+        """Test a list with NaN values"""
+        self.assertEqual(max_integer([11, float('NaN'), 33, 44]), 33)
 
 
 if __name__ == '__main__':
