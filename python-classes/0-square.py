@@ -18,7 +18,7 @@ class Square:
     -------
     __init__(size)
         initializes the square with a given side length
-    calculate_area():
+    area():
         Return the area of the square
 
     """
