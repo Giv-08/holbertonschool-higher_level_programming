@@ -20,10 +20,10 @@ class Square:
         initializes the square with a given side length
     calculate_area():
         Return the area of the square
-
     """
+
     def __init__(self, size=0):
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
