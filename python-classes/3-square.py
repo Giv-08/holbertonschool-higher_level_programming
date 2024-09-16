@@ -12,7 +12,7 @@ class Square:
     size : int
         The length of one side of the square.
     area : int
-        The area of the square calculated as side * side
+        The area of the square calculated as side ** 2
 
     Methods
     -------
