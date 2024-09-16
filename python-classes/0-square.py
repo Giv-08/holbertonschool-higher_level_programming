@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""This module handles a square area calculation.
+This module provides a function calculate_square()
+that calculates the area of square by using the length of side
+"""
+
 class Square:
     """A class represents a square.
     Attributes
