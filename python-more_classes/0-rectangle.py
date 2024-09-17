@@ -6,7 +6,7 @@ that calculates the area of rectangle by using the length of one side
 
 
 class Rectangle:
-     """A class represents a rectangle.
+    """A class represents a rectangle.
     Attributes
     ----------
     width : int
