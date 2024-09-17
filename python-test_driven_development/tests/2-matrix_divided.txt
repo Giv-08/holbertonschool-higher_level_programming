@@ -59,7 +59,6 @@ Add a list of integers with incorrect argument types:
     TypeError: div must be a number
 
 Each row of the matrix must be of the same size:
-In case this condition is not met, a TypeError is raised:
 
     >>> matrix = [
     ...     [2, 4, 6, 14],
@@ -73,12 +72,10 @@ In case this condition is not met, a TypeError is raised:
 An empty list will raise a TypeError
 
     >>> matrix = [[]]
-
     >>> matrix_divided(matrix, 2)
     [[]]
 
     >>> matrix = None
-
     >>> matrix_divided(matrix, 2)
     Traceback (most recent call last):
         ...
@@ -87,8 +84,8 @@ An empty list will raise a TypeError
 Matrix has mixed data types
 
     >>> matrix = [
-    ...         [2.2, "hello", -6],
-    ...         [8, 10.2, "school"]
+    ...         [2.2, "ciao", -6],
+    ...         [8, 10.2, "hi"]
     ... ]
     >>> matrix_divided(matrix, 2)
     Traceback (most recent call last):
