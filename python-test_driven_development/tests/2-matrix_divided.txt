@@ -25,6 +25,15 @@ Add a list of integers with a float as div:
     >>> matrix_divided(matrix, 2)
     [[1.1, 2.2, 3.3], [4.4, 5.1, -6.1]]
 
+Floats and integers can be combined:
+
+    >>> matrix = [
+    ...         [2.2, 4, -6],
+    ...         [8, 10.2, 12.2]
+    ... ]
+    >>> matrix_divided(matrix, 2)
+    [[1.1, 2.0, -3.0], [4.0, 5.1, 6.1]]
+
 Handle infinity:
 
     >>> matrix = [[1, 2, 3], [4, 5, 6]]
