@@ -18,9 +18,12 @@ Add a list of integers with an integer as div:
 
 Add a list of integers with a float as div:
 
-    >>> matrix = [[1, 2, 3], [4, 5, 6]]
-    >>> matrix_divided(matrix, 3.3)
-    [[0.3, 0.61, 0.91], [1.21, 1.52, 1.82]]
+    >>> matrix = [
+    ...         [2.2, 4.4, 6.6],
+    ...         [8.8, 10.2, -12.2]
+    ... ]
+    >>> matrix_divided(matrix, 2)
+    [[1.1, 2.2, 3.3], [4.4, 5.1, -6.1]]
 
 Handle infinity:
 
@@ -54,29 +57,6 @@ Miss required arguments:
     ...
     TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
 
-Add 0 as div:
-
-    >>> matrix = [
-    ...     [2, 4, 6, 8],
-    ...     [10, 12, 14, 16]
-    ... ]
-    >>> matrix_divided(matrix, 0)
-    Traceback (most recent call last):
-        ...
-    ZeroDivisionError: division by zero
-
-
-Add string as div:
-
-        matrix = [
-        [2, 4, 6, 8],
-        [10, 12, 14, 16]
-    ]
-    matrix_divided(matrix, 'stt')
-    Traceback (most recent call last):
-    ...
-    TypeError: div must be a number
-
 Add a list of integers with incorrect argument types:
 
         matrix = [
@@ -99,3 +79,29 @@ In case this condition is not met, a TypeError is raised:
     Traceback (most recent call last):
         ...
     TypeError: Each row of the matrix must have the same size
+
+Invalid division
+----------------
+
+Add 0 as div:
+
+    >>> matrix = [
+    ...     [2, 4, 6, 8],
+    ...     [10, 12, 14, 16]
+    ... ]
+    >>> matrix_divided(matrix, 0)
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+
+
+Add string as div:
+
+        matrix = [
+        [2, 4, 6, 8],
+        [10, 12, 14, 16]
+    ]
+    matrix_divided(matrix, 'this is not a number')
+    Traceback (most recent call last):
+    ...
+    TypeError: div must be a number
