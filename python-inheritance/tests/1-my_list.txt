@@ -13,9 +13,7 @@ Add elements to the list and print sorted:
 
     >>> my_list_instance = MyList([1, 4, 2, 3, 5])
     >>> my_list_instance.print_sorted()
-    [1, 4, 2, 3, 5]
     [1, 2, 3, 4, 5]
-    [1, 4, 2, 3, 5]
 
 Test for Type errors:
 ---------------------
@@ -24,8 +22,6 @@ Miss required arguments (Correct Usage):
 
     >>> my_empty_list = MyList()
     >>> my_empty_list.print_sorted()
-    []
-    []
     []
 
 Add two arguments (Incorrect Usage):
