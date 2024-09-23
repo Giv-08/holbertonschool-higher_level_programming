@@ -37,6 +37,38 @@ Add string in the argument as value:
     ...
     TypeError: John must be an integer
 
+Add a tuple of integer(s) in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", (6,))
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
+
+Add a set of integer(s) in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", {6,5})
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
+
+Add a list of integer(s) in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", [5])
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
+
+Add a boolean in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", True)
+
+Add a None in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", None)
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
+
 Miss required arguments:
 
     >>> integer_validator_instance.integer_validator()
