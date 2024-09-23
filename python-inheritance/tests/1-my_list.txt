@@ -15,7 +15,7 @@ Add elements to the list and print sorted:
     >>> my_list_instance.print_sorted()
     [1, 2, 3, 4, 5]
 
-Add a list of string and print sorted:
+Add a list of strings and print sorted:
 
     >>> my_empty_list = MyList(['c', 'e', 'd', 't', 'a'])
     >>> my_empty_list.print_sorted()
@@ -32,7 +32,7 @@ Check if `print_sorted()` prints a new sorted list:
 
 Check `__str__` method (string representation of the list):
 
-    >>> print(my_list_instance)  # Tests the __str__ method
+    >>> print(my_list_instance)
     [3, 1, 4, 2]
 
 Check `append()` method
