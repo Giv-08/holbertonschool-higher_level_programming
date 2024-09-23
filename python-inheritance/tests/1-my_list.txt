@@ -15,6 +15,12 @@ Add elements to the list and print sorted:
     >>> my_list_instance.print_sorted()
     [1, 2, 3, 4, 5]
 
+Add a list of string and print sorted:
+
+    >>> my_empty_list = MyList(['c', 'e', 'd', 't', 'a'])
+    >>> my_empty_list.print_sorted()
+    ['a', 'c', 'd', 'e', 't']
+
 Test for Type errors:
 ---------------------
 
