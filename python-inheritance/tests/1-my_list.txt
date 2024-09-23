@@ -4,7 +4,7 @@ Using ``my_list``
 
 First, import ``my_list`` from the ``1-my_list`` file:
 
-    >>> print_s = __import__('1-my_list').my_list
+    >>> print_s = __import__('1-my_list').print_sorted
 
 Examples:
 ---------
