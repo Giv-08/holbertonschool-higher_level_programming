@@ -16,6 +16,26 @@ Add two arguments as string and int:
 
 Test for Type errors:
 ---------------------
+Add 0 in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: John must be greater than 0
+
+Add negative number in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", -6)
+    Traceback (most recent call last):
+    ...
+    ValueError: John must be greater than 0
+
+Add string in the argument as value:
+
+    >>> integer_validator_instance.integer_validator("John", "6")
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
 
 Miss required arguments:
 
