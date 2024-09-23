@@ -5,6 +5,7 @@ the list of available attributes and methods of an object
 TypeError is raised if size is not integer type.
 """
 
+
 def lookup(obj):
     """
     Prints the list of available attributes and methods of an object
