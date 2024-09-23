@@ -4,33 +4,33 @@ Using ``my_list``
 
 First, import ``my_list`` from the ``1-my_list`` file:
 
-    my_list = __import__('1-my_list')
-    MyList = my_list.MyList
+    >>> my_list_module = __import__('1-my_list')
+    >>> MyList = my_list_module.MyList
 
 Examples:
 ---------
-Add self keyword in argument:
+Add elements to the list and print sorted:
 
-    >>> my_list = MyList([1, 4, 2, 3, 5])
-    >>> my_list.print_sorted()
+    >>> my_list_instance = MyList([1, 4, 2, 3, 5])
+    >>> my_list_instance.print_sorted()
     [1, 4, 2, 3, 5]
     [1, 2, 3, 4, 5]
     [1, 4, 2, 3, 5]
 
-Add two arguments:
-
-    >>> my_list = MyList("self")
-    >>> my_list.print_sorted()
-    ['s', 'e', 'l', 'f']
-    ['e', 'f', 'l', 's']
-    ['s', 'e', 'l', 'f']
-
 Test for Type errors:
 ---------------------
-Miss required arguments:
 
-    >>> my_list = MyList()
-    >>> my_list.print_sorted()
+Miss required arguments (Correct Usage):
+
+    >>> my_empty_list = MyList()
+    >>> my_empty_list.print_sorted()
+    []
+    []
+    []
+
+Add two arguments (Incorrect Usage):
+
+    >>> my_list_instance.print_sorted("extra_argument")
     Traceback (most recent call last):
     ...
-    IndexError: list index out of range
+    TypeError: print_sorted() takes 1 positional argument but 2 were given

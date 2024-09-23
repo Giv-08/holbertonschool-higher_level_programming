@@ -7,13 +7,13 @@ the list of sorted integers
 
 class MyList(list):
     """
-    Prints the sorted list of integers
+    Custom list class that can print itself sorted.
 
     Parameters:
     self: the list of integers
 
     Returns:
-    a list of sorted integers
+    None
     """
 
     def print_sorted(self):
