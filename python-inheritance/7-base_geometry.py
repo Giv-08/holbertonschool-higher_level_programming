@@ -21,8 +21,8 @@ class BaseGeometry:
         Parameters:
         self: the size
 
-        Returns:
-        None
+        Raises:
+            Exception: Indicating that the area() method is not implemented
         """
         raise Exception("area() is not implemented")
 
@@ -35,8 +35,9 @@ class BaseGeometry:
         name: name must be string
         value: value must be integer
 
-        Returns:
-        None
+        Raises:
+            TypeError: If 'value' is not an integer.
+            ValueError: If 'value' is less than or equal to 0
         """
         if type(value) is not int:
             raise TypeError(f"{name} must be an integer")
