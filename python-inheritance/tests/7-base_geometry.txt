@@ -14,12 +14,15 @@ Add two arguments as string and int:
 
     >>> integer_validator_instance.integer_validator("David", 44)
 
+Test for Type errors:
+---------------------
 Add a boolean in the argument as value:
 
     >>> integer_validator_instance.integer_validator("John", True)
+    Traceback (most recent call last):
+    ...
+    TypeError: John must be an integer
 
-Test for Type errors:
----------------------
 Add 0 in the argument as value:
 
     >>> integer_validator_instance.integer_validator("John", 0)
