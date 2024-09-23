@@ -13,7 +13,4 @@ class BaseGeometry:
     None
     """
     def area(self):
-        try:
-            pass
-        except BaseGeometry:
-            raise("area() is not implemented")
+        raise("area() is not implemented")
