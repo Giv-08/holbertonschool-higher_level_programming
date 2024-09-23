@@ -19,8 +19,8 @@ Add self keyword in argument:
 
 Add two arguments:
 
-    >>> my_list_instance = MyList("self")
-    >>> my_list_instance.print_sorted()
+    >>> my_list = MyList("self")
+    >>> my_list.print_sorted()
     ['s', 'e', 'l', 'f']
     ['e', 'f', 'l', 's']
     ['s', 'e', 'l', 'f']
@@ -29,8 +29,8 @@ Test for Type errors:
 ---------------------
 Miss required arguments:
 
-    >>> my_list_instance = MyList()
-    >>> my_list_instance.print_sorted()
+    >>> my_list = MyList()
+    >>> my_list.print_sorted()
     Traceback (most recent call last):
     ...
     IndexError: list index out of range
