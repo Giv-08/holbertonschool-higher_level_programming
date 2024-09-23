@@ -1,0 +1,35 @@
+The ``integer_validator`` module
+
+Using ``integer_validator``
+
+First, import ``integer_validator`` from the ``7-base_geometry`` file:
+
+    >>> integer_validator_module = __import__('7-base_geometry')
+    >>> BaseGeometry = integer_validator_module.BaseGeometry
+
+Examples:
+---------
+Add two arguments as string and int:
+
+    >>> integer_validator_instance.integer_validator("David", 44)
+
+Test for Type errors:
+---------------------
+
+Miss required arguments:
+
+    >>> integer_validator_instance.integer_validator()
+    [TypeError] integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+Miss one argument:
+
+    >>> integer_validator_instance.integer_validator("John")
+    [TypeError] integer_validator() missing 1 required positional argument: 'value'
+
+    >>> integer_validator_instance.integer_validator(33)
+    [TypeError] integer_validator() missing 1 required positional argument: 'value'
+
+Add more than two arguments:
+
+    >>> integer_validator_instance.integer_validator("John", 33, 44)
+    [TypeError] integer_validator() takes 3 positional arguments but 4 were given
