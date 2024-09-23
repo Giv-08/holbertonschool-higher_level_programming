@@ -6,6 +6,7 @@ First, import ``integer_validator`` from the ``7-base_geometry`` file:
 
     >>> integer_validator_module = __import__('7-base_geometry')
     >>> BaseGeometry = integer_validator_module.BaseGeometry
+    >>> integer_validator_instance = BaseGeometry()
 
 Examples:
 ---------
