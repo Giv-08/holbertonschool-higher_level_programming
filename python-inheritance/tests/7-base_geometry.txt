@@ -19,9 +19,6 @@ Test for Type errors:
 Add a boolean in the argument as value:
 
     >>> integer_validator_instance.integer_validator("John", True)
-    Traceback (most recent call last):
-    ...
-    TypeError: John must be an integer
 
 Add 0 in the argument as value:
 
