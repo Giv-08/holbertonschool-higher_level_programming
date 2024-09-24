@@ -7,6 +7,12 @@ This module provides a class called BaseGeometry
 class BaseGeometry:
     """
     class BaseGeometry
+
+    >>> bg = BaseGeometry()
+    >>> bg.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
     """
     def area(self):
         """
