@@ -52,12 +52,13 @@ class Rectangle(BaseGeometry):
         width: mustr be integer
         height: must be integer
         """
+        super().__init__()
         super().integer_validator("width", width)
         super().integer_validator("height", height)
 
         self.__width = width
         self.__height = height
-        super().__init__(width, height)
+
         # if not isinstance(self.__width, int):
         #     raise self.integer_validator("width", width)
         # if not isinstance(self.__height, int):
