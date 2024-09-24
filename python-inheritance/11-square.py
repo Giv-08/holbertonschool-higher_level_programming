@@ -111,3 +111,15 @@ class Square(Rectangle):
         result of area formula
         """
         return (self.__size * self.__size)
+
+    def __str__(self):
+        """
+        function that print the area formula
+
+        Parameters:
+        self: the size
+
+        Return:
+        full formula
+        """
+        return f"[Rectangle] {self.__size}/{self.__size}"
