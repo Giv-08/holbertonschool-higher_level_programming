@@ -41,7 +41,7 @@ class BaseGeometry:
 
 class Rectangle(BaseGeometry):
     """
-    class Rectangle inherited from class Geometry
+    class Rectangle inherited from class BaseGeometry
     """
     def __init__(self, width, height):
         """
@@ -52,7 +52,7 @@ class Rectangle(BaseGeometry):
         width: mustr be integer
         height: must be integer
         """
-        # super().__init__()
+        super().__init__(width, height)
         super().integer_validator("width", width)
         super().integer_validator("height", height)
 
