@@ -22,10 +22,10 @@ class BaseGeometry:
 
     def integer_validator(self, name, value):
         """
-        function that calculates area
+        function that validates the value is a
+        positive integer
 
         Parameters:
-        self: the size
         name: name must be string
         value: value must be integer
 
@@ -48,7 +48,6 @@ class Rectangle(BaseGeometry):
         function that instantiates a rectangle instance
 
         Parameters:
-        self: the size
         width: mustr be integer
         height: must be integer
         """
