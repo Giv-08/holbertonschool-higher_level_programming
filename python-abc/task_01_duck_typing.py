@@ -6,6 +6,7 @@ the area of each shape
 import math
 from abc import ABC, abstractmethod
 
+
 class Shape(ABC):
     @abstractmethod
     def area(self):
@@ -23,9 +24,6 @@ class Shape(ABC):
         """
         pass
 
-    # def shape_info(self):
-    #     print(f"Area: {self.area()}")
-    #     print(f"Perimeter: {self.perimeter()}")
 
 class Circle(Shape):
 
@@ -37,6 +35,7 @@ class Circle(Shape):
 
     def perimeter(self):
         return 2 * math.pi * self.__radius
+
 
 class Rectangle(Shape):
 
@@ -50,6 +49,7 @@ class Rectangle(Shape):
     def perimeter(self):
         return (self.__width + self.__height) * 2
 
+
 def shape_info(self):
-        print(f"Area: {self.area()}")
-        print(f"Perimeter: {self.perimeter()}")
+    print(f"Area: {self.area()}")
+    print(f"Perimeter: {self.perimeter()}")
