@@ -57,6 +57,7 @@ class Rectangle(BaseGeometry):
 
         self.__width = width
         self.__height = height
+        super().__init__(size, size)
         # if not isinstance(self.__width, int):
         #     raise self.integer_validator("width", width)
         # if not isinstance(self.__height, int):
