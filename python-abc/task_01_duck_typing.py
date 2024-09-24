@@ -8,6 +8,9 @@ from abc import ABC, abstractmethod
 
 
 class Shape(ABC):
+    """
+    class Shape inherited from ABC class
+    """
     @abstractmethod
     def area(self):
         """
