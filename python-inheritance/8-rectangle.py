@@ -3,40 +3,7 @@
 This module provides a class called BaseGeometry and a subclass Rectangle
 """
 
-
-class BaseGeometry:
-    """
-    class BaseGeometry
-    """
-    def area(self):
-        """
-        function that calculates area
-
-        Parameters:
-        self: the size
-
-        Raises:
-            Exception: Indicating that the area() method is not implemented
-        """
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """
-        function that validates the value is a
-        positive integer
-
-        Parameters:
-        name: name must be string
-        value: value must be integer
-
-        Raises:
-            TypeError: If 'value' is not an integer.
-            ValueError: If 'value' is less than or equal to 0
-        """
-        if type(value) is not int:
-            raise TypeError(f"{name} must be an integer")
-        elif value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
@@ -48,7 +15,7 @@ class Rectangle(BaseGeometry):
         function that instantiates a rectangle instance
 
         Parameters:
-        width: mustr be integer
+        width: must be integer
         height: must be integer
         """
         self.integer_validator("width", width)
