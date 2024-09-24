@@ -53,8 +53,7 @@ class Rectangle(BaseGeometry):
         """
         self.__width = width
         self.__height = height
-        # if not isinstance(self.__width, int) or not isinstance(self.__height, int):
-        if type(self.__width) is not int or type(self.__height) is not int:
+        if not isinstance(self.__width, int) or not isinstance(self.__height, int):
             raise super().integer_validator()
         if self.__width < 0 or self.__height < 0:
             raise super().integer_validator()
