@@ -14,24 +14,14 @@ Add two arguments as string and int:
 
     >>> integer_validator_instance.integer_validator("David", 44)
 
-`BaseGeometry` has two methods:
+Doctests for BaseGeometry.area()
+-------------------------------
 
-1. 'area(self)` is not yet implemented
     >>> bg = BaseGeometry()
     >>> bg.area()
     Traceback (most recent call last):
-        ...
+    ...
     Exception: area() is not implemented
-2. `integer_validator(self, name, value)` validates value, however, if 'value'
-is a valid integer the function does nothing
-
-    >>> bg.integer_validator("my_int", 12)
-The function expects that `value` is an integer.
-In case this condition is not met, a TypeError is raised:
-    >>> bg.integer_validator("name", "angela")
-    Traceback (most recent call last):
-        ...
-    TypeError: name must be an integer
 
 Test for Type errors:
 ---------------------
