@@ -38,6 +38,7 @@ class BaseGeometry:
         elif value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
+
 class Rectangle(BaseGeometry):
     """
     class Rectangle inherited from class Geometry
@@ -53,7 +54,11 @@ class Rectangle(BaseGeometry):
         """
         self.__width = width
         self.__height = height
-        if not isinstance(self.__width, int) or not isinstance(self.__height, int):
-            raise super().integer_validator()
-        if self.__width < 0 or self.__height < 0:
-            raise super().integer_validator()
+        if not isinstance(self.__width, int):
+            raise super().integer_validator("width", width)
+        if not isinstance(self.__height, int):
+            raise super().integer_validator("height", height)
+        if self.__width < 0:
+            raise super().integer_validator("width", width)
+        if self.__height < 0:
+            raise super().integer_validator("height", height)
