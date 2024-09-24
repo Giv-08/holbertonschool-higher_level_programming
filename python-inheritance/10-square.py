@@ -52,6 +52,7 @@ class Rectangle(BaseGeometry):
         width: mustr be integer
         height: must be integer
         """
+        # super().__init__()
         super().integer_validator("width", width)
         super().integer_validator("height", height)
 
@@ -81,3 +82,31 @@ class Rectangle(BaseGeometry):
         full formula
         """
         return f"[Rectangle] {self.__width}/{self.__height}"
+
+class Square(Rectangle):
+    """
+    class Square inherited from class Rectangle
+    """
+    def __init__(self, size):
+        """
+        function that instantiates a square instance
+
+        Parameters:
+        self: the object
+        sizet: must be integer
+        """
+        super().integer_validator("size", size)
+        self.__size = size
+        super().__init__(size, size)
+
+    def area(self):
+        """
+        function that calculates area
+
+        Parameters:
+        self: the size
+
+        Return:
+        result of area formula
+        """
+        return (self.__size * self.__size)
