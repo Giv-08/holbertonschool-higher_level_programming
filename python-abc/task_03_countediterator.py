@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-This module provides a CountedIterator class that logs
-operations when items are added, removed, or popped.
+This module provides a CountedIterator class that counts
+elements in iterable item and update the current count
 """
 class CountedIterator:
     """
