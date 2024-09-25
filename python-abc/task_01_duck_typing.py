@@ -31,7 +31,8 @@ class Shape(ABC):
 class Circle(Shape):
 
     def __init__(self, radius):
-        self.__radius = radius
+        if radius >= 0:
+            self.__radius = radius
 
     def area(self):
         return math.pi * self.__radius ** 2
