@@ -20,7 +20,7 @@ class MyInt(int):
 
     def __ne__(self, num):
         """
-        the method __nq__ behaves the opposite way during comparisons
+        the method __ne__ behaves the opposite way during comparisons
         "==" is equal "!="
 
         Return: False if it's the opposite
