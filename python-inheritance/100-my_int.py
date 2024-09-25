@@ -9,16 +9,20 @@ class MyInt(int):
     """
     This is a class called MyInt inherited from int
     """
-    def MyInt(self):
+    def __eq__(self, num):
         """
-        the method MyInt behaves the opposite way during comparisons
+        the method __eq__ behaves the opposite way during comparisons
         "==" is equal "!="
 
-        Return: True is it's the opposite
-        otherwise, False
+        Return: True if it's the opposite
         """
-        def __eq__(self, num):
-            if self is num:
-                return False
-            elif self is not num:
-                return True
+        return super().__eq__(num) == False
+
+    def __ne__(self, num):
+        """
+        the method __nq__ behaves the opposite way during comparisons
+        "==" is equal "!="
+
+        Return: False if it's the opposite
+        """
+        return super().__eq__(num) == True
