@@ -4,6 +4,7 @@ This module provides a class called MyInt inherited from int
 the method MyInt behaves the opposite way during comparisons
 """
 
+
 class MyInt(int):
     """
     This is a class called MyInt inherited from int
@@ -16,7 +17,8 @@ class MyInt(int):
         Return: True is it's the opposite
         otherwise, False
         """
-        if self == "==":
-            return False
-        elif self == "!=":
-            return True
+        def __eq__(self, num):
+            if self is num:
+                return False
+            elif self is not num:
+                return True
