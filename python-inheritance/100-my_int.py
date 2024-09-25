@@ -16,7 +16,7 @@ class MyInt(int):
 
         Return: True if it's the opposite
         """
-        return super().__eq__(num) == False
+        return not super().__eq__(num)
 
     def __ne__(self, num):
         """
@@ -25,4 +25,4 @@ class MyInt(int):
 
         Return: False if it's the opposite
         """
-        return super().__eq__(num) == True
+        return super().__eq__(num)
