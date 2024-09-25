@@ -4,6 +4,7 @@ This module provides a function that sets an attribute
 to an object
 """
 
+
 def add_attribute(self, attr, value):
     """
     Set an attribute on the instance.
