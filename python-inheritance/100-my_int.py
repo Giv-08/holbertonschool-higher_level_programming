@@ -28,5 +28,7 @@ class MyInt(int):
         # return super().__eq__(num) == True
         if self == num:
             return False
+        elif self and num == 0:
+            return False
         else:
             return True
