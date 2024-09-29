@@ -3,6 +3,11 @@
 """
 
 def read_file(filename=""):
+    '''
+    This function prints contents from the given file using "with"
+    and open()
+    The last line must skip the new line
+    '''
     with open(filename, 'r', encoding="utf-8") as op:
         for line in op:
             if line[:-1]:
