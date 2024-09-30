@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This module handles a function that read text in a given file
 """
-import json
+
 
 def read_file(filename=""):
     '''
