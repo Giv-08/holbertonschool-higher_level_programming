@@ -12,6 +12,8 @@ def read_file(filename=""):
     with open(filename, 'r', encoding="utf-8") as op:
         lines = op.readlines()
         op = len(lines)
+        if op == 1:
+            print(f"{lines}")
         for i, line in enumerate(lines):
             if i < op - 1:
                 print(line, end="")
