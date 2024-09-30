@@ -13,7 +13,7 @@ def read_file(filename=""):
         lines = op.readlines()
         length = len(lines)
         if length == 1:
-            print(lines[0])
+            print(lines[0].strip())
         else:
             for i, line in enumerate(lines):
                 if i < length - 1:
