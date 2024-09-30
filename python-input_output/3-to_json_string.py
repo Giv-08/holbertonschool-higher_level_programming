@@ -13,4 +13,4 @@ def to_json_string(my_obj):
     Return: object(string)
     '''
     my_json = json.dumps(my_obj)
-    return (my_json)
+    print(my_json)
