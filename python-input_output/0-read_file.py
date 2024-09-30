@@ -18,4 +18,4 @@ def read_file(filename=""):
             for i, line in enumerate(lines):
                 if i < length - 1:
                     print(line, end="")
-        print(lines[-1].rstrip(), end="")
+            print(lines[-1].rstrip(), end="")
