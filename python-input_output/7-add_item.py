@@ -11,6 +11,6 @@ load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 with open('add_item.json', 'a') as file:
     lst = []
-    lst.append(sys.argv[1:])
+    lst.extend(sys.argv[1:])
     save_to_json_file(lst, 'add_item.json')
     load_from_json_file('add_item.json')
