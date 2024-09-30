@@ -16,4 +16,4 @@ with open('add_item.json', 'a') as file:
         lst = []
     lst.extend(sys.argv[1:])
     save_to_json_file(lst, 'add_item.json')
-    # load_from_json_file('add_item.json')
+    load_from_json_file('add_item.json')
