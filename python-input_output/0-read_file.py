@@ -15,6 +15,8 @@ def read_file(filename=""):
             if i < len(text) - 1:
                 print(line, end="")
         print(text[-1].rstrip(), end="")
+        if len(text) == 1:
+            print(text[0].strip())
     # print(s)
         # lines = file.readlines()
         # length = len(lines)
