@@ -19,6 +19,8 @@ def read_file(filename=""):
         #         if i < length - 1:
         #             print(line, end="")
         #     print(lines[-1].rstrip(), end="")
+        if len(lines) == 1:
+            print(lines[0].strip())
         for line in lines[:-1]:
             print(line, end="")
         if lines:
