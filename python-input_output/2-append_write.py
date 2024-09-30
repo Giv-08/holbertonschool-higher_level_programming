@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""This module handles a function that appends a string at the end of a text file
-and returns the number of characters added
+"""This module handles a function that appends a string
+at the end of a text file and returns the number of
+characters added
 """
 
 
