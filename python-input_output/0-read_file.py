@@ -11,10 +11,11 @@ def read_file(filename=""):
     '''
     with open(filename, 'r', encoding="utf-8") as op:
         lines = op.readlines()
-        op = len(lines)
-        if op == 1:
-            print(lines)
-        for i, line in enumerate(lines):
-            if i < op - 1:
-                print(line, end="")
+        length = len(lines)
+        if length == 1:
+            print(lines[0])
+        else:
+            for i, line in enumerate(lines):
+                if i < length - 1:
+                    print(line, end="")
         print(lines[-1].rstrip(), end="")
