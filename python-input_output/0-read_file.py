@@ -11,12 +11,12 @@ def read_file(filename=""):
     '''
     with open(filename, 'r') as file:
         text = file.read()
+        if len(text) == 1:
+            print(text[0].strip())
         for i, line in enumerate(text):
             if i < len(text) - 1:
                 print(line, end="")
         print(text[-1].rstrip(), end="")
-        if len(text) == 1:
-            print(text[0].strip())
     # print(s)
         # lines = file.readlines()
         # length = len(lines)
