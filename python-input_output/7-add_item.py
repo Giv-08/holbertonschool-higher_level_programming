@@ -16,5 +16,5 @@ try:
 except FileNotFoundError:
     lst = []
 lst.extend(sys.argv[1:])
-load_from_json_file('add_item.json')
+# load_from_json_file('add_item.json')
 save_to_json_file(lst, 'add_item.json')
