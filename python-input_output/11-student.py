@@ -23,3 +23,7 @@ class Student:
                 if element in self.__dict__:
                     new_dict[element] = self.__dict__[element]
             return new_dict
+
+    def reload_from_json(self, json):
+        for key, value in json.items():
+            setattr(self, key, value)
