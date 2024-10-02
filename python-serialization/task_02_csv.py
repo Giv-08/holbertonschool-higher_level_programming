@@ -15,8 +15,12 @@ def convert_csv_to_json(cvs_file):
                 list_dict = list(my_dict)
             with open('data.json', 'w') as file:
                 json.dump(list_dict, file)
+            print("Conversion successful!")
             return True
         else:
             False
     except FileNotFoundError:
+        return False
+    except Exception as e:
+        print(f"An error occured: {e}")
         return False
