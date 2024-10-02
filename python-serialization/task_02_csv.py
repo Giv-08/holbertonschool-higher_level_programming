@@ -16,6 +16,6 @@ def convert_csv_to_json(cvs_file):
                 list_dict = list(my_dict)
             with open('data.json', 'w') as file:
                 json.dumps(list_dict, file)
-        return True
+            return True
     except FileNotFoundError:
         return False
