@@ -4,7 +4,6 @@ format (CSV) and converting it into another format (JSON)
 using serialization techniques
 """
 from csv import DictReader
-# import csv
 import json
 
 
@@ -17,5 +16,7 @@ def convert_csv_to_json(cvs_file):
             with open('data.json', 'w') as file:
                 json.dump(list_dict, file)
             return True
+        else:
+            False
     except FileNotFoundError:
         return False
