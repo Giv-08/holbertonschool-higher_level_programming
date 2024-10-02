@@ -7,9 +7,9 @@ import json
 
 class CustomObject:
     def __init__(self, name, age, is_student):
-        self.__name = name
-        self.__age = age
-        self.__is_student = is_student
+        self.name = name
+        self.age = age
+        self.is_student = is_student
 
     def display(self):
         print(f"Name: {self.__name}")
