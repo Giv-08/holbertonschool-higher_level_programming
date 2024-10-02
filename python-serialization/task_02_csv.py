@@ -10,11 +10,12 @@ import json
 
 def convert_csv_to_json(cvs_file):
     try:
-        with open('csv_file', 'r') as f:
-            my_dict = DictReader(f)
-            list_dict = list(my_dict)
-        with open('data.json', 'w') as file:
-            json.dumps(list_dict, file)
+        if cvs_file:
+            with open('csv_file', 'r') as f:
+                my_dict = DictReader(f)
+                list_dict = list(my_dict)
+            with open('data.json', 'w') as file:
+                json.dumps(list_dict, file)
         return True
     except FileNotFoundError:
         return False
