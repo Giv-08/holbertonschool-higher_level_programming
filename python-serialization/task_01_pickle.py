@@ -12,15 +12,15 @@ class CustomObject:
         self.is_student = is_student
 
     def display(self):
-        print(f"Name: {self.__name}")
-        print(f"Age: {self.__age}")
-        print(f"Is Student: {self.__is_student}")
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
         data = {
-            'name': self.__name,
-            'age': self.__age,
-            'is_student': self.__is_student
+            'name': self.name,
+            'age': self.age,
+            'is_student': self.is_student
         }
         with open(filename, 'w') as file:
             json.dump(data, file)
