@@ -9,13 +9,15 @@ def read_file(filename=""):
     and open()
     The last line must skip the new line
     '''
-    with open(filename, 'r') as file:
-        lines = file.readlines()
-        length = len(lines)
-        if length == 1:
-            print(lines[0].strip())
-        else:
-            for i, line in enumerate(lines):
-                if i < length - 1:
-                    print(line, end="")
-            print(lines[-1].rstrip(), end="")
+    # with open(filename, 'r') as file:
+        # lines = file.readlines()
+        # length = len(lines)
+        # if length == 1:
+        #     print(lines[0].strip())
+        # else:
+        #     for i, line in enumerate(lines):
+        #         if i < length - 1:
+        #             print(line, end="")
+        #     print(lines[-1].rstrip(), end="")
+    with open(filename, 'r', encoding='utf-8') as file:
+        print(file.read().rstrip(), end='')
