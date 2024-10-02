@@ -20,4 +20,4 @@ def read_file(filename=""):
         #             print(line, end="")
         #     print(lines[-1].rstrip(), end="")
     with open(filename, 'r', encoding='utf-8') as file:
-        print(file.read().rstrip(), end='')
+        print(file.read().strip(), end='')
