@@ -2,7 +2,6 @@
 """This module handles class called CustomObject
 """
 import json
-# import pickle
 
 
 class CustomObject:
