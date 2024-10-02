@@ -22,5 +22,3 @@ def convert_csv_to_json(csv_file):
             return False
     except FileNotFoundError:
         return False
-    except Exception as e:
-        return False
