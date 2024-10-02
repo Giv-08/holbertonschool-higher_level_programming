@@ -15,7 +15,7 @@ def convert_csv_to_json(cvs_file):
                 my_dict = DictReader(f)
                 list_dict = list(my_dict)
             with open('data.json', 'w') as file:
-                json.dumps(list_dict, file)
+                json.dump(list_dict, file)
             return True
     except FileNotFoundError:
         return False
