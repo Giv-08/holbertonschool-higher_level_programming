@@ -27,6 +27,9 @@ class CustomObject:
 
     @classmethod
     def deserialize(cls, filename):
-        with open(filename, 'r') as file:
-            data = json.load(file)
-            return cls(data['name'], data['age'], data['is_student'])
+        try:
+            with open(filename, 'r') as file:
+                data = json.load(file)
+                return cls(data['name'], data['age'], data['is_student'])
+        except (FileNotFoundError, json.JSONDecodeError, KeyError):
+            return None
