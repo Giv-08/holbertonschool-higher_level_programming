@@ -20,7 +20,7 @@ def convert_csv_to_json(cvs_file):
             return True
         else:
             # print("No CSV file provided.")
-            False
+            return False
     except FileNotFoundError:
         # print(f"File not found: {csv_file}")
         return False
