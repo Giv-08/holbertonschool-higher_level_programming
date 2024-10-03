@@ -50,7 +50,7 @@ def deserialize_from_xml(filename):
     tree = ET.parse(filename)
     root = tree.getroot()
     new_dict = {}
-    for element in root:
+    for element in root.iter():
         key = element.tag
         value = convert_type(element.text)
         new_dict[key] = value
