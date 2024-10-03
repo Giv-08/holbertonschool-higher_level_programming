@@ -3,6 +3,8 @@
 deserialization using XML as an alternative format to JSON
 """
 import xml.etree.ElementTree as ET
+from xml.etree import ElementTree
+from xml.dom import minidom
 
 
 def serialize_to_xml(dictionary, filename):
@@ -11,7 +13,12 @@ def serialize_to_xml(dictionary, filename):
         child = ET.SubElement(root, key)
         child.text = str(value)
 
-    return ET.ElementTree(root).write(filename)
+    tree = ET.ElementTree(root)
+    xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
+    pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
+
+    with open(filename, 'w') as file:
+        file.write(pretty_xml)
 
 def convert_type(value):
     try:
