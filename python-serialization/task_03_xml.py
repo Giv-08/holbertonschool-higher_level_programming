@@ -20,7 +20,7 @@ def serialize_to_xml(dictionary, filename):
     xmlstr = ET.tostring(root, encoding='utf-8', method='xml').decode()
 
     dom = xml.dom.minidom.parse(xmlstr)
-    pretty_xml = dom.toprettyxml()
+    pretty_xml = dom.toprettyxml(indent="    ")
     with open(filename, 'w') as file:
         file.write(pretty_xml)
 def convert_type(value):
