@@ -7,13 +7,17 @@ from xml.dom import minidom
 
 
 def serialize_to_xml(dictionary, filename):
-    root = ET.Element("data")
-    for key, value in dictionary.items():
-        child = ET.SubElement(root, key)
-        child.text = str(value)
+    try:
+        root = ET.Element("data")
+        for key, value in dictionary.items():
+            child = ET.SubElement(root, key)
+            child.text = str(value)
 
-    tree = ET.ElementTree(root)
-    tree.write(filename)
+        tree = ET.ElementTree(root)
+        tree.write(filename)
+        return True
+    except Exception as e:
+        return False
     # xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
     # pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
 
