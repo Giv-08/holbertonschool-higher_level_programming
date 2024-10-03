@@ -4,26 +4,25 @@ deserialization using XML as an alternative format to JSON
 """
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
+import xml.dom.minidom
 
 
 def serialize_to_xml(dictionary, filename):
-    try:
-        root = ET.Element("data")
-        for key, value in dictionary.items():
-            child = ET.SubElement(root, key)
-            child.text = str(value)
+    root = ET.Element("data")
+    for key, value in dictionary.items():
+        child = ET.SubElement(root, key)
+        child.text = str(value)
 
-        tree = ET.ElementTree(root)
-        tree.write(filename, encoding='utf-8', xml_declaration=True)
-        return True
-    except Exception as e:
-        return False
+    # tree = ET.ElementTree(root)
     # xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
     # pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
+    # tree.write(filename, encoding='utf-8', xml_declaration=True)
 
-    # with open(filename, 'w') as file:
-    #     file.write(pretty_xml)
 
+    dom = xml.dom.minidom.parse(filename)
+    pretty_xml = dom.toprettyxml()
+    with open(filename, 'w') as file:
+        file.write(pretty_xml)
 def convert_type(value):
     try:
         return int(value)
@@ -34,16 +33,11 @@ def convert_type(value):
             return value
 
 def deserialize_from_xml(filename):
-    try:
-        tree = ET.parse(filename)
-        root = tree.getroot()
-        new_dict = {}
-        for element in root:
-            key = element.tag
-            value = convert_type(element.text)
-            new_dict[key] = value
-        return new_dict
-    except FileNotFoundError:
-        return None
-    except Exception as e:
-        return None
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    new_dict = {}
+    for element in root:
+        key = element.tag
+        value = convert_type(element.text)
+        new_dict[key] = value
+    return new_dict
