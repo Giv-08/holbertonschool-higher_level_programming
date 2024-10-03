@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# from task_03_xml import serialize_to_xml, deserialize_from_xml
-import task_03_xml as xml_serialize
+from task_03_xml import serialize_to_xml, deserialize_from_xml
+# import task_03_xml as xml_serialize
 
 def main():
     sample_dict = {
@@ -10,10 +10,10 @@ def main():
     }
 
     xml_file = "data.xml"
-    xml_serialize.serialize_to_xml(sample_dict, xml_file)
+    serialize_to_xml(sample_dict, xml_file)
     print(f"Dictionary serialized to {xml_file}")
 
-    deserialized_data = xml_serialize.deserialize_from_xml(xml_file)
+    deserialized_data = deserialize_from_xml(xml_file)
     print("\nDeserialized Data:")
     print(deserialized_data)
 
