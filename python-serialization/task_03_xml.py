@@ -13,34 +13,29 @@ def serialize_to_xml(dictionary, filename):
         child.text = str(value)
 
     tree = ET.ElementTree(root)
-    tree.write(filename, encoding='utf-8', xml_declaration=True)
+    tree.write(filename)
 
-    xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
-    pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
+    # xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
+    # pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
 
-    with open(filename, 'w') as file:
-        file.write(pretty_xml)
+    # with open(filename, 'w') as file:
+    #     file.write(pretty_xml)
 
-def convert_type(value):
-    try:
-        return int(value)
-    except ValueError:
-        try:
-            return float(value)
-        except ValueError:
-            return value
+# def convert_type(value):
+#     try:
+#         return int(value)
+#     except ValueError:
+#         try:
+#             return float(value)
+#         except ValueError:
+#             return value
 
 def deserialize_from_xml(filename):
-    try:
-        tree = ET.parse(filename)
-        root = tree.getroot()
-        new_dict = {}
-        for element in root:
-            key = element.tag
-            value = convert_type(element.text)
-            new_dict[key] = value
-        return new_dict
-    except FileNotFoundError:
-        return None
-    except Exception as e:
-        return None
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    new_dict = {}
+    for element in root:
+        # key = element.tag
+        # value = convert_type(element.text)
+        new_dict[element.tag] = element.text
+    return new_dict
