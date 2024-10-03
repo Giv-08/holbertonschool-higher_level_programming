@@ -12,11 +12,13 @@ def serialize_to_xml(dictionary, filename):
         child = ET.SubElement(root, key)
         child.text = str(value)
 
-    xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
-    pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
+    tree = ET.ElementTree(root)
+    tree.write(filename)
+    # xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
+    # pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
 
-    with open(filename, 'w') as file:
-        file.write(pretty_xml)
+    # with open(filename, 'w') as file:
+    #     file.write(pretty_xml)
 
 def convert_type(value):
     try:
