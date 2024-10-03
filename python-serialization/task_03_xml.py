@@ -17,9 +17,9 @@ def serialize_to_xml(dictionary, filename):
     # xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
     # pretty_xml = minidom.parseString(xmlstr).toprettyxml(indent="    ")
     # tree.write(filename, encoding='utf-8', xml_declaration=True)
+    xmlstr = ET.tostring(root, encoding='utf-8', method='xml').decode()
 
-
-    dom = xml.dom.minidom.parse(filename)
+    dom = xml.dom.minidom.parse(xmlstr)
     pretty_xml = dom.toprettyxml()
     with open(filename, 'w') as file:
         file.write(pretty_xml)
