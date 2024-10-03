@@ -34,11 +34,16 @@ def convert_type(value):
             return value
 
 def deserialize_from_xml(filename):
-    tree = ET.parse(filename)
-    root = tree.getroot()
-    new_dict = {}
-    for element in root:
-        key = element.tag
-        value = convert_type(element.text)
-        new_dict[key] = value
-    return new_dict
+    try:
+        tree = ET.parse(filename)
+        root = tree.getroot()
+        new_dict = {}
+        for element in root:
+            key = element.tag
+            value = convert_type(element.text)
+            new_dict[key] = value
+        return new_dict
+    except FileNotFoundError:
+        return None
+    except Exception as e:
+        return None
