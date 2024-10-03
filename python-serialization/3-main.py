@@ -16,5 +16,13 @@ def main():
     print("\nDeserialized Data:")
     print(deserialized_data)
 
+    # Debug output to compare loaded and original data
+    print("\nComparing Loaded Data with Sample Dictionary:")
+    print("Loaded Data:", deserialized_data)
+    print("Sample Dictionary:", sample_dict)
+
+    # Assert to check if the data matches
+    assert deserialized_data == {key: str(value) for key, value in sample_dict.items()}, "Data loaded does not match data saved"
+
 if __name__ == "__main__":
     main()
