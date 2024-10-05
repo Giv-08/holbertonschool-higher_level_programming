@@ -13,7 +13,7 @@ def pascal_triangle(n):
     Parameter:
     n: integer
 
-    Return nested list
+    Return nested list or if n is lest than 0 return []
     '''
     if n <= 0:
         return []
