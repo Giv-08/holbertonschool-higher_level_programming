@@ -6,6 +6,15 @@ the Pascal’s triangle of n:
 
 
 def pascal_triangle(n):
+    '''
+    function pascal_triangle takes n assumed to ne an interger
+    to create the number of triangle levels
+
+    Parameter:
+    n: integer
+
+    Return nested list
+    '''
     if n <= 0:
         return []
 
@@ -17,4 +26,4 @@ def pascal_triangle(n):
         for j in range(len(triangle) + 1):
             row.append(temp[j] + temp[j + 1])
         triangle.append(row)
-    return(triangle)
+    return (triangle)
