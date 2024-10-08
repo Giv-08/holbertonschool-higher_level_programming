@@ -22,5 +22,6 @@ def fetch_and_save_posts():
     response = requests.get(url)
     if response:
         data = response.json()
+    fields = ['id', 'title', 'body']
     with open('posts.csv', 'w') as file:
-        writer = csv.DictWriter(file)
+        writer = csv.DictWriter(file, fieldnames=fields)
