@@ -28,7 +28,7 @@ def get_username(username):
     if username in users:
         return jsonify(users[username])
     else:
-        return jsonify({"error": "User not found"}), 400
+        return jsonify({"error": "User not found"}), 404
 
 # alice = {
 #     "username": "alice",
@@ -47,18 +47,20 @@ def add_user():
     city = data.get("city")
 
     if not username:
-        return jsonify({"error":"Username is required"}), 400
+        return jsonify({"error": "Username is required"}), 400
+
     if username in users:
-        return jsonify({"error": "User already exists"}), 400
+        return jsonify({"error": "User with this username already exists"}), 400
 
     users[username] = {
-        "username": username,
+        "username": username,  # Include the username in the user data
         "name": name,
         "age": age,
         "city": city
     }
+
     return jsonify({
-        "message": "User added succesfully!",
+        "message": "User added successfully!",
         "user": users[username]
     }), 201
 
