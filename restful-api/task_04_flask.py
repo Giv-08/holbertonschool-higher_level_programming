@@ -4,62 +4,104 @@ from flask import request
 
 app = Flask(__name__)
 
+# users = {}
+
+# @app.route("/")
+# def home():
+#     return "Welcome to the Flask API!"
+
+# # users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
+# #             "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
+# #             }
+# @app.route("/data", methods=["GET"])
+# def get_data():
+#     # usernames = list(users.keys())
+#     # return jsonify(usernames)
+#     return jsonify(users)
+
+# @app.route("/status")
+# def status():
+#     return "OK"
+
+# @app.route("/users/<username>")
+# def get_username(username):
+#     if username in users:
+#         return jsonify(users[username])
+#     else:
+#         return jsonify({"error": "User not found"}), 404
+
+# users = {
+#     "username": "alice",
+#     "name": "Alice",
+#     "age": 25,
+#     "city": "San Francisco"
+# }
+
+# @app.route("/add_user", methods=["POST"])
+# def add_user():
+#     data = request.get_json()
+
+#     username = data.get("username")
+#     name = data.get("name")
+#     age = data.get("age")
+#     city = data.get("city")
+
+#     if not username:
+#         return jsonify({"error":"Username is required"}), 400
+#     # if username in users:
+#     #     return jsonify({"error": "User not found"}), 400
+
+#     users[username] = {
+#         "name": name,
+#         "age": age,
+#         "city": city
+#     }
+#     return jsonify({
+#         "message": "User added succesfully!",
+#         "user": users[username]
+#     }), 201
+
+# @app.route("/users/<username>", methods=["GET"])
+# def get_user(username):
+#     user = users.get(username)
+#     if user is None:
+#         return jsonify({"error": "User not found"}), 400
+#     return jsonify(user)
 users = {}
 
 @app.route("/")
 def home():
-    return "Welcome to the Flask API!"
+    return "Welcome to the User API!"
 
-# users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-#             "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
-#             }
 @app.route("/data", methods=["GET"])
 def get_data():
-    # usernames = list(users.keys())
-    # return jsonify(usernames)
     return jsonify(users)
-
-@app.route("/status")
-def status():
-    return "OK"
-
-@app.route("/users/<username>")
-def get_username(username):
-    if username in users:
-        return jsonify(users[username])
-    else:
-        return jsonify({"error": "User not found"}), 404
-
-users = {
-    "username": "alice",
-    "name": "Alice",
-    "age": 25,
-    "city": "San Francisco"
-}
-
-users = {}
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
     data = request.get_json()
-
     username = data.get("username")
     name = data.get("name")
     age = data.get("age")
     city = data.get("city")
 
     if not username:
-        return jsonify({"error":"Username is required"}), 400
-    # if username in users:
-    #     return jsonify({"error": "User not found"}), 400
+        return jsonify({"error": "Username is required"}), 400
+
+    if username in users:
+        return jsonify({"error": "User already exists"}), 400
+
+    if not name or age is None or not city:
+        return jsonify({"error": "All user details are required"}), 400
 
     users[username] = {
         "name": name,
         "age": age,
         "city": city
     }
+
     return jsonify({
-        "message": "User added succesfully!",
+        "message": "User added successfully!",
         "user": users[username]
     }), 201
 
@@ -67,8 +109,12 @@ def add_user():
 def get_user(username):
     user = users.get(username)
     if user is None:
-        return jsonify({"error": "User not found"}), 400
+        return jsonify({"error": "User not found"}), 404
     return jsonify(user)
+
+@app.route("/status", methods=["GET"])
+def status():
+    return jsonify({"status": "OK"})
 
 if __name__ == "__main__":
     app.run()
