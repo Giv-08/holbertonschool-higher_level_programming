@@ -1,6 +1,4 @@
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -30,15 +28,9 @@ def get_username(username):
     else:
         return jsonify({"error": "User not found"}), 404
 
-# alice = {
-#     "username": "alice",
-#     "name": "Alice",
-#     "age": 25,
-#     "city": "San Francisco"
-# }
-
 @app.route("/add_user", methods=["POST"])
 def add_user():
+    print("Received request with headers:", request.headers)
     data = request.get_json()
 
     username = data.get("username")
@@ -53,7 +45,7 @@ def add_user():
         return jsonify({"error": "User with this username already exists"}), 400
 
     users[username] = {
-        "username": username,  # Include the username in the user data
+        "username": username,
         "name": name,
         "age": age,
         "city": city
@@ -64,5 +56,9 @@ def add_user():
         "user": users[username]
     }), 201
 
+@app.route("/users", methods=["GET"])
+def get_users():
+    return jsonify(users)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
