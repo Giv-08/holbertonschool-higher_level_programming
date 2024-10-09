@@ -28,7 +28,7 @@ def get_username(username):
     if username in users:
         return jsonify(users[username])
     else:
-        return jsonify({"error": "User not found"}), 404
+        return jsonify({"error": "User not found"}), 400
 
 # alice = {
 #     "username": "alice",
