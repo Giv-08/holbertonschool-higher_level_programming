@@ -17,13 +17,13 @@ users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los An
 def get_data():
     # usernames = list(users.keys())
     # return jsonify(usernames)
-    return jsonify(users)
+    return jsonify(users), 200
 
 @app.route("/status")
 def status():
     return "OK"
 
-@app.route("/users/<username>")
+@app.route("/users/<username>", methods=["GET"])
 def get_username(username):
     if username in users:
         return jsonify(users[username])
@@ -61,13 +61,6 @@ def add_user():
         "message": "User added succesfully!",
         "user": users[username]
     }), 201
-
-@app.route("/users/<username>", methods=["GET"])
-def get_user(username):
-    user = users.get(username)
-    if user is None:
-        return jsonify({"error": "User not found"}), 400
-    return jsonify(user)
 
 if __name__ == "__main__":
     app.run()
