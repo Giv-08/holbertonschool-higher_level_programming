@@ -64,7 +64,7 @@ def add_user():
 
     return jsonify({
         "message": "User added successfully!",
-        "user": users[username]
+        "user": output
     }), 201
 
 # @app.route("/users", methods=["GET"])
