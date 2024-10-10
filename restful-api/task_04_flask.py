@@ -46,39 +46,37 @@ def add_user():
     if "username" in users:
         return jsonify({"error": "Username already exists"}), 400
 
-    username = data.get("username")
-    name = data.get("name")
-    age = data.get("age")
-    city = data.get("city")
+    # username = data.get("username")
+    # name = data.get("name")
+    # age = data.get("age")
+    # city = data.get("city")
 
 
-    users[username] = {
-        "username": username,
-        "name": name,
-        "age": age,
-        "city": city
+    # users[username] = {
+    #     "username": username,
+    #     "name": name,
+    #     "age": age,
+    #     "city": city
+    # }
+
+    # return jsonify({
+    #     "message": "User added successfully!",
+    #     "user": users[username]
+    # }), 201
+
+    users[data["username"]] = {
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
     }
 
-    return jsonify({
-        "message": "User added successfully!",
-        "user": users[username]
-    }), 201
-    # if "username" not in data:
-    #     return jsonify({"error": "Username is required"}), 400
-
-    # users[data["username"]] = {
-    #     "name": data["name"],
-    #     "age": data["age"],
-    #     "city": data["city"]
-    # }
-
-    # output = {
-    #     "username": data["username"],
-    #     "name": data["name"],
-    #     "age": data["age"],
-    #     "city": data["city"]
-    # }
-    # return jsonify({"message": "User added", "user": output}), 201
+    dict = {
+        "username": data["username"],
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
+    }
+    return jsonify({"message": "User added", "user": dict}), 201
 
 if __name__ == "__main__":
     app.run(host='localhost', port=5000, debug=True)
