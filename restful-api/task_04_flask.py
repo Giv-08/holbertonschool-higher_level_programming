@@ -25,11 +25,11 @@ def get_username(username):
     #     return jsonify({"error": "User not found"}), 404
     if username not in users:
         return jsonify({"error": "User not found"}), 404
-    return jsonify(users[username])
-    # output = users[username]
-    # output["username"] = username
 
-    # return jsonify(output)
+    user_name = users[username]
+    user_name["username"] = username
+
+    return jsonify(user_name)
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
