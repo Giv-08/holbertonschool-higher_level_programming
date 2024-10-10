@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 users = {}
@@ -33,10 +33,10 @@ def get_username(username):
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
-    # if request.get_json() is None:
-    #     return jsonify({"error": "Request must be JSON"}), 400
     if request.get_json() is None:
-        abort(400, "Not a JSON")
+        return jsonify({"error": "Request must be JSON"}), 400
+    # if request.get_json() is None:
+    #     abort(400, "Not a JSON")
 
     data = request.get_json()
 
@@ -46,36 +46,36 @@ def add_user():
     if "username" in users:
         return jsonify({"error": "Username already exists"}), 400
 
-    username = data.get("username")
-    name = data.get("name")
-    age = data.get("age")
-    city = data.get("city")
+    # username = data.get("username")
+    # name = data.get("name")
+    # age = data.get("age")
+    # city = data.get("city")
 
 
-    users[username] = {
-        "username": data[username],
-        "name": data[name],
-        "age": data[age],
-        "city": data[city]
-    }
+    # users[username] = {
+    #     "username": data[username],
+    #     "name": data[name],
+    #     "age": data[age],
+    #     "city": data[city]
+    # }
 
     # return jsonify({
     #     "message": "User added successfully!",
     #     "user": users[username]
     # }), 201
 
-    # users[data["username"]] = {
-    #     "name": data["name"],
-    #     "age": data["age"],
-    #     "city": data["city"]
-    # }
+    users[data["username"]] = {
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
+    }
 
-    # dict = {
-    #     "username": data["username"],
-    #     "name": data["name"],
-    #     "age": data["age"],
-    #     "city": data["city"]
-    # }
+    dict = {
+        "username": data["username"],
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
+    }
     return jsonify({"message": "User added", "user": dict}), 201
 
 if __name__ == "__main__":
