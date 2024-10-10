@@ -52,12 +52,12 @@ def add_user():
     city = data.get("city")
 
 
-    # users[username] = {
-    #     "username": username,
-    #     "name": name,
-    #     "age": age,
-    #     "city": city
-    # }
+    users[username] = {
+        "username": username,
+        "name": name,
+        "age": age,
+        "city": city
+    }
 
     # return jsonify({
     #     "message": "User added successfully!",
