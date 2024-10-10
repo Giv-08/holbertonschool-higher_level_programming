@@ -46,10 +46,10 @@ def add_user():
     if "username" in users:
         return jsonify({"error": "Username already exists"}), 400
 
-    # username = data.get("username")
-    # name = data.get("name")
-    # age = data.get("age")
-    # city = data.get("city")
+    username = data.get("username")
+    name = data.get("name")
+    age = data.get("age")
+    city = data.get("city")
 
 
     # users[username] = {
@@ -64,11 +64,11 @@ def add_user():
     #     "user": users[username]
     # }), 201
 
-    users[data["username"]] = {
-        "name": data["name"],
-        "age": data["age"],
-        "city": data["city"]
-    }
+    # users[data["username"]] = {
+    #     "name": data["name"],
+    #     "age": data["age"],
+    #     "city": data["city"]
+    # }
 
     dict = {
         "username": data["username"],
