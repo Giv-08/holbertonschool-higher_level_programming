@@ -12,20 +12,27 @@ jwt = JWTManager(app)
 
 users = {
     "admin": {
+        "username": "admin",
         "password": generate_password_hash("admin_password"),
         "role": "admin"
     },
-    "user_1": {
+    "user1": {
+        "username": "user1",
         "password": generate_password_hash("user_password"),
         "role": "user"
     }
 
 }
 
+@app.route("/")
+def home():
+    return "Welcome to the Flask API"
+
 def varify_password(username, password):
-    if username in users and check_password_hash(users.get(username), password):
-        return True
-    return False
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
+    return None
 
 @app.route('/login')
 @auth.login_required
