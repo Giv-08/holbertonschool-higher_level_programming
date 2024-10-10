@@ -42,11 +42,24 @@ def add_user():
     # city = data.get("city")
 
 
-    users[username] = {
-        "username": username,
-        "name": name,
-        "age": age,
-        "city": city
+    # users[username] = {
+    #     "username": username,
+    #     "name": name,
+    #     "age": age,
+    #     "city": city
+    # }
+
+    users[data["username"]] = {
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
+    }
+
+    output = {
+        "username": data["username"],
+        "name": data["name"],
+        "age": data["age"],
+        "city": data["city"]
     }
 
     return jsonify({
