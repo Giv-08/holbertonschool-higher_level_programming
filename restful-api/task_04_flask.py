@@ -19,17 +19,13 @@ def status():
 
 @app.route("/users/<username>")
 def get_username(username):
-    if username in users:
-        return jsonify(users[username])
-    else:
+    if username not in users:
         return jsonify({"error": "User not found"}), 404
-    # if username not in users:
-    #     return jsonify({"error": "User not found"}), 404
 
-    # user_name = users[username]
-    # user_name["username"] = username
+    update_name = users[username]
+    update_name["username"] = username
 
-    # return jsonify(user_name)
+    return jsonify(update_name)
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
@@ -44,24 +40,6 @@ def add_user():
     if "username" in users:
         return jsonify({"error": "Username already exists"}), 400
 
-    # username = data.get("username")
-    # name = data.get("name")
-    # age = data.get("age")
-    # city = data.get("city")
-
-
-    # users[username] = {
-    #     "username": data[username],
-    #     "name": data[name],
-    #     "age": data[age],
-    #     "city": data[city]
-    # }
-
-    # return jsonify({
-    #     "message": "User added successfully!",
-    #     "user": users[username]
-    # }), 201
-
     users[data["username"]] = {
         "name": data["name"],
         "age": data["age"],
@@ -74,7 +52,7 @@ def add_user():
         "age": data["age"],
         "city": data["city"]
     }
-    return jsonify({"message": "User added", "user": dict}), 201
+    return jsonify({"message": "User added successfully", "user": dict}), 201
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=5000, debug=True)
+    app.run(debug=True)
