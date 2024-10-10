@@ -53,10 +53,10 @@ def add_user():
 
 
     users[username] = {
-        "username": username,
-        "name": name,
-        "age": age,
-        "city": city
+        "username": data[username],
+        "name": data[name],
+        "age": data[age],
+        "city": data[city]
     }
 
     # return jsonify({
@@ -70,12 +70,12 @@ def add_user():
     #     "city": data["city"]
     # }
 
-    dict = {
-        "username": data["username"],
-        "name": data["name"],
-        "age": data["age"],
-        "city": data["city"]
-    }
+    # dict = {
+    #     "username": data["username"],
+    #     "name": data["name"],
+    #     "age": data["age"],
+    #     "city": data["city"]
+    # }
     return jsonify({"message": "User added", "user": dict}), 201
 
 if __name__ == "__main__":
