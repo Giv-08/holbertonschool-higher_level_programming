@@ -19,17 +19,17 @@ def status():
 
 @app.route("/users/<username>")
 def get_username(username):
-    if username in users:
-        return jsonify(users[username])
-    else:
-        return jsonify({"error": "User not found"}), 404
-    # if username not in users:
+    # if username in users:
+    #     return jsonify(users[username])
+    # else:
     #     return jsonify({"error": "User not found"}), 404
+    if username not in users:
+        return jsonify({"error": "User not found"}), 404
 
-    # output = users[username]
-    # output["username"] = username
+    output = users[username]
+    output["username"] = username
 
-    # return jsonify(output)
+    return jsonify(output)
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
@@ -40,45 +40,45 @@ def add_user():
 
     data = request.get_json()
 
-    # if "username" not in data:
-    #     return jsonify({"error": "Username is required"}), 400
-
-    # if "username" in users:
-    #     return jsonify({"error": "Username already exists"}), 400
-
-    # username = data.get("username")
-    # name = data.get("name")
-    # age = data.get("age")
-    # city = data.get("city")
-
-
-    # users[username] = {
-    #     "username": username,
-    #     "name": name,
-    #     "age": age,
-    #     "city": city
-    # }
-
-    # return jsonify({
-    #     "message": "User added successfully!",
-    #     "user": users[username]
-    # }), 201
     if "username" not in data:
         return jsonify({"error": "Username is required"}), 400
 
-    users[data["username"]] = {
-        "name": data["name"],
-        "age": data["age"],
-        "city": data["city"]
+    if "username" in users:
+        return jsonify({"error": "Username already exists"}), 400
+
+    username = data.get("username")
+    name = data.get("name")
+    age = data.get("age")
+    city = data.get("city")
+
+
+    users[username] = {
+        "username": username,
+        "name": name,
+        "age": age,
+        "city": city
     }
 
-    output = {
-        "username": data["username"],
-        "name": data["name"],
-        "age": data["age"],
-        "city": data["city"]
-    }
-    return jsonify({"message": "User added", "user": output}), 201
+    return jsonify({
+        "message": "User added successfully!",
+        "user": users[username]
+    }), 201
+    # if "username" not in data:
+    #     return jsonify({"error": "Username is required"}), 400
+
+    # users[data["username"]] = {
+    #     "name": data["name"],
+    #     "age": data["age"],
+    #     "city": data["city"]
+    # }
+
+    # output = {
+    #     "username": data["username"],
+    #     "name": data["name"],
+    #     "age": data["age"],
+    #     "city": data["city"]
+    # }
+    # return jsonify({"message": "User added", "user": output}), 201
 
 if __name__ == "__main__":
     app.run(host='localhost', port=5000, debug=True)
