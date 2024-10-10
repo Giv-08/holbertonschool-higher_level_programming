@@ -19,24 +19,22 @@ def status():
 
 @app.route("/users/<username>")
 def get_username(username):
-    # if username in users:
-    #     return jsonify(users[username])
-    # else:
-    #     return jsonify({"error": "User not found"}), 404
-    if username not in users:
+    if username in users:
+        return jsonify(users[username])
+    else:
         return jsonify({"error": "User not found"}), 404
+    # if username not in users:
+    #     return jsonify({"error": "User not found"}), 404
 
-    user_name = users[username]
-    user_name["username"] = username
+    # user_name = users[username]
+    # user_name["username"] = username
 
-    return jsonify(user_name)
+    # return jsonify(user_name)
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
     if request.get_json() is None:
         return jsonify({"error": "Request must be JSON"}), 400
-    # if request.get_json() is None:
-    #     abort(400, "Not a JSON")
 
     data = request.get_json()
 
