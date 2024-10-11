@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
+app.config['SECRET_KEY'] = '12345abcde'
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
@@ -27,6 +27,7 @@ def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
+    return None
 
 @app.route('/basic-protected')
 @auth.login_required
