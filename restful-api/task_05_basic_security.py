@@ -22,16 +22,17 @@ users = {
     }
 }
 
-@app.route("/")
-def home():
-    return "Welcome to the Flask API"
-
 @auth.verify_password
 def varify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
     return None
+
+@app.route("/")
+def home():
+    return "Welcome to the Flask API"
+
 
 @app.route('/basic-protected')
 @auth.login_required
@@ -43,25 +44,32 @@ def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     # current_user = get_jwt_identity()
-    user = users.get(username)
+    # user = users.get(username)
     # if username not in users or not check_password_hash(users[username]["password"], password):
-    if not user or not check_password_hash(user["password"], password):
-        return jsonify({"msg": "Wrong username or password"}), 401
+    # if not user or not check_password_hash(user["password"], password):
+    #     return jsonify({"msg": "Wrong username or password"}), 401
 
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token), 200
+    # access_token = create_access_token(identity=username)
+    # return jsonify(access_token=access_token), 200
+    user = users.get(username)
+    if user and check_password_hash(user["password"], password):
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify({"msg": "Wrong username or password"}), 401
 
 @app.route('/jwt-protected')
 @jwt_required()
 def protected():
-    current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+    # current_user = get_jwt_identity()
+    # return jsonify(logged_in_as=current_user), 200
+    return "JWT Auth: Access Granted"
 
 @app.route('/admin-only')
 @jwt_required()
 def admin():
     current_user = get_jwt_identity()
-    if users[current_user]["role"] == "admin":
+    if current_user in users or users[current_user]["role"] == "admin":
         return "Admin Access: Granted", 200
     else:
         return jsonify({"msg": "You do not have access to this route."}), 403
