@@ -66,7 +66,7 @@ def protected():
 
 @app.route('/admin-only')
 @jwt_required()
-def admin():
+def admin_only():
     current_user = get_jwt_identity()
     if current_user in users or users[current_user]["role"] == "admin":
         return "Admin Access: Granted", 200
