@@ -26,28 +26,26 @@ users = {
 def home():
     return "Welcome to the Flask API"
 
-# def varify_password(username, password):
-#     user = users.get(username)
-#     if user and check_password_hash(user['password'], password):
-#         return user
-#     return None
+@auth.verify_password
+def varify_password(username, password):
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
+    return None
 
 @app.route('/basic-protected')
-@auth.basic
+@auth.login_required
 def basic_protected():
     return "Basic Auth: Access Granted"
-
-# @app.route('/login')
-# @auth.login_required
-# def index():
-#     return "Hello, {}! You've logged in!".format(auth.username())
 
 @app.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    current_user = get_jwt_identity()
-    if username not in users or password != users[current_user]["password"]:
+    # current_user = get_jwt_identity()
+    user = users.get(username)
+    # if username not in users or not check_password_hash(users[username]["password"], password):
+    if not user or not check_password_hash(user["password"], password):
         return jsonify({"msg": "Wrong username or password"}), 401
 
     access_token = create_access_token(identity=username)
@@ -57,10 +55,7 @@ def login():
 @jwt_required()
 def protected():
     current_user = get_jwt_identity()
-    # if current_user:
     return jsonify(logged_in_as=current_user), 200
-    # else:
-    #     return ({"msg": "You do not have access due to the invalid token."}), 401
 
 @app.route('/admin-only')
 @jwt_required()
@@ -70,16 +65,6 @@ def admin():
         return "Admin Access: Granted", 200
     else:
         return jsonify({"msg": "You do not have access to this route."}), 403
-
-# @app.route('/user')
-# @jwt_required()
-# def user():
-#     current_user = get_jwt_identity()
-#     if users[current_user]["role"] == "user":
-#         return f"Welcome, {current_user}!"
-#     else:
-#         return jsonify({"msg": "You do not have access to this route."}), 403
-
 
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
