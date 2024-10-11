@@ -1,26 +1,27 @@
 #!/usr/bin/python3
-from flask import Flask, request, jsonify, abort
+from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required
 
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
 auth = HTTPBasicAuth()
-app.config['SECRET_KEY'] = '12345abcde'
 jwt = JWTManager(app)
 
 users = {
-    "admin": {
-        "username": "admin",
-        "password": generate_password_hash("admin_password"),
-        "role": "admin"
-    },
     "user1": {
         "username": "user1",
-        "password": generate_password_hash("user_password"),
+        "password": generate_password_hash("password"),
         "role": "user"
+    },
+    "admin": {
+        "username": "admin",
+        "password": generate_password_hash("password"),
+        "role": "admin"
     }
 }
+
 @auth.verify_password
 def verify_password(username, password):
     user = users.get(username)
@@ -60,7 +61,6 @@ def admin_only():
     current_user = get_jwt_identity()
     if current_user not in users or users[current_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-
     return "Admin Access: Granted"
 
 @jwt.unauthorized_loader
@@ -83,6 +83,6 @@ def handle_revoked_token_error(err):
 def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # app.run(host='localhost', port=5000, debug=True)
     app.run()
