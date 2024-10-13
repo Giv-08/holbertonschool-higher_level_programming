@@ -43,11 +43,12 @@ def login():
 
     # access_token = create_access_token(identity=data["username"])
     # return jsonify({"access_token": access_token})
-    if data["username"] in users or check_password_hash(users[data["username"]]["password"], data["password"]):
+    if data["username"] in users and check_password_hash(users[data["username"]]["password"], data["password"]):
         access_token = create_access_token(identity=data["username"])
         return jsonify({"access_token": access_token})
     else:
         return jsonify({"msg": "Bad username or password"}), 401
+
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
@@ -60,11 +61,12 @@ def admin_only():
     # if current_user not in users or users[current_user]["role"] != "admin":
     #     return jsonify({"error": "Admin access required"}), 403
     # return "Admin Access: Granted"
-    if current_user in users or users[current_user]["role"] == "admin":
+    if current_user in users and users[current_user]["role"] == "admin":
         return "Admin Access: Granted", 200
     else:
         return jsonify({"msg": "You do not have access to this route."}), 403
 
+# JWT error handlers
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
