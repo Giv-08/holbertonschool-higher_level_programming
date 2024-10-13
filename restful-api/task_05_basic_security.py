@@ -1,6 +1,4 @@
 #!/usr/#!/usr/bin/python3
-""" Nameless Module for Task 5 """
-
 from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -57,6 +55,7 @@ def login():
 def jwt_protected():
     return "JWT Auth: Access Granted"
 
+# 4th endpoint - uses JWT
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
@@ -67,7 +66,8 @@ def admin_only():
 
     return "Admin Access: Granted"
 
-# JWT error handlers
+
+# Custom error handlers for JWT errors
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
