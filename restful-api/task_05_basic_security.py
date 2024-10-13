@@ -6,7 +6,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
-app.config["JWT_SECRET_KEY"] = "its_super_secret_Holberton"
+app.config['JWT_SECRET_KEY'] = '12345abcde'
 
 users = {
     "user1": {
@@ -21,7 +21,7 @@ users = {
     }
 }
 
-print(generate_password_hash("password"))
+# print(generate_password_hash("password"))
 
 @auth.verify_password
 def verify_password(username, password):
