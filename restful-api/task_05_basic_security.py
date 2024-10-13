@@ -27,6 +27,7 @@ def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
+    return None
 
 @app.route('/basic-protected')
 @auth.login_required
@@ -40,9 +41,9 @@ def login():
 
     data = request.get_json()
 
-    # for k in ["username", "password"]:
-    #     if k not in data:
-    #         abort(400, "Missing attribute {}.".format(k))
+    for attr in ["username", "password"]:
+        if attr not in data:
+            abort(400, f"Missing an attribute {attr}.")
 
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
