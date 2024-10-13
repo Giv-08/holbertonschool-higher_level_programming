@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Nameless Module for Task 5 """
+
 from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -37,16 +39,12 @@ def basic_protected():
 def login():
     if request.get_json() is None:
         abort(400, "Not a JSON")
-
     data = request.get_json()
-
     for k in ["username", "password"]:
         if k not in data:
             abort(400, "Missing attribute {}.".format(k))
-
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
-
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
 
@@ -59,10 +57,8 @@ def jwt_protected():
 @jwt_required()
 def admin_only():
     current_user = get_jwt_identity()
-
     if current_user not in users or users[current_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-
     return "Admin Access: Granted"
 
 # JWT error handlers
