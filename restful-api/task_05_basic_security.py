@@ -89,7 +89,7 @@ def admin_only():
     return "Admin Access: Granted"
 
 
-# Custom error handlers for JWT errors
+# JWT error handler
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
