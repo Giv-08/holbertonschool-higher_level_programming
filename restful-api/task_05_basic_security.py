@@ -22,6 +22,9 @@ users = {
     }
 }
 
+# print to see the encripted password
+# print(generate_password_hash("password"))
+
 @auth.verify_password
 def verify_password(username, password):
     user = users.get(username)
@@ -45,14 +48,19 @@ def login():
     if request.get_json() is None:
         abort(400, "Not a json file")
     data = request.get_json()
-    for k in ["username", "password"]:
-        if k not in data:
-            abort(400, f"Missing an attribute {k}.")
-    if data["username"] in users and check_password_hash(users[data["username"]]["password"], data["password"]):
-        access_token = create_access_token(identity=data["username"])
-        return jsonify({"access_token": access_token})
-    else:
-        return jsonify({"msg": "Wrong username or password"}), 401
+    for attr in ["username", "password"]:
+        if attr not in data:
+            abort(400, f"Missing an attribute {attr}.")
+    if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=data["username"])
+    return jsonify({"access_token": access_token})
+    # if data["username"] in users and check_password_hash(users[data["username"]]["password"], data["password"]):
+    #     access_token = create_access_token(identity=data["username"])
+    #     return jsonify({"access_token": access_token})
+    # else:
+    #     return jsonify({"msg": "Wrong username or password"}), 401
 
 @app.route('/jwt-protected')
 @jwt_required()
