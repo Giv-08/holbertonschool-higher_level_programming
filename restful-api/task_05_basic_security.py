@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '12345abcde'
+app.config['JWT_SECRET_KEY'] = '12345abcde'
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
@@ -45,7 +45,9 @@ def login():
     if request.get_json() is None:
         abort(400, "Not a json file")
     data = request.get_json()
-
+    for k in ["username", "password"]:
+        if k not in data:
+            abort(400, f"Missing an attribute {k}.")
     if data["username"] in users and check_password_hash(users[data["username"]]["password"], data["password"]):
         access_token = create_access_token(identity=data["username"])
         return jsonify({"access_token": access_token})
