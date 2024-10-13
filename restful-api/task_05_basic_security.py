@@ -39,7 +39,7 @@ def basic_protected():
 @app.route("/login", methods=["POST"])
 def login():
     if request.get_json() is None:
-        abort(400, "Not a JSON")
+        abort(400, "Not a json file")
 
     data = request.get_json()
 
@@ -48,7 +48,7 @@ def login():
             abort(400, "Missing attribute {}.".format(k))
 
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
-        return jsonify({"msg": "Bad username or password"}), 401
+        return jsonify({"msg": "Wrong username or password"}), 401
 
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
