@@ -36,18 +36,21 @@ def basic_protected():
 
 @app.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()
 # fix this condition
     # if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
     #     return jsonify({"msg": "Bad username or password"}), 401
 
     # access_token = create_access_token(identity=data["username"])
     # return jsonify({"access_token": access_token})
+    if request.get_json() is None:
+        abort(400, "Not a json file")
+    data = request.get_json()
+
     if data["username"] in users and check_password_hash(users[data["username"]]["password"], data["password"]):
         access_token = create_access_token(identity=data["username"])
         return jsonify({"access_token": access_token})
     else:
-        return jsonify({"msg": "Bad username or password"}), 401
+        return jsonify({"msg": "Wrong username or password"}), 401
 
 @app.route('/jwt-protected')
 @jwt_required()
