@@ -76,11 +76,6 @@ def jwt_protected():
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
-    """ Only for admin role users """
-    # -- Usage example --
-    # curl -X GET “http://localhost:5000/admin-only” -H “Authorization: Bearer <token_goes_here>”
-    # NOTE: the token you use must be from a logged-in 'admin' user
-
     current_user = get_jwt_identity()
 
     if current_user not in users or users[current_user]["role"] != "admin":
