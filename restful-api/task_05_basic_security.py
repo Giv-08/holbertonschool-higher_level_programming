@@ -24,12 +24,8 @@ users = {
     }
 }
 
-# 1st endpoint - no JWT needed
 @auth.verify_password
 def verify_password(username, password):
-    # -- Usage example --
-    # curl -X GET "http://localhost:5000/basic-protected" --user user1:password
-
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
@@ -39,14 +35,8 @@ def verify_password(username, password):
 def basic_protected():
     return "Basic Auth: Access Granted"
 
-
-# 2nd endpoint - returns JWT
 @app.route("/login", methods=["POST"])
 def login():
-    """ login """
-    # -- Usage example --
-    # curl -X POST localhost:5000/login -H "Content-Type: application/json" -d '{"username":"user1","password":"password"}'
-
     if request.get_json() is None:
         abort(400, "Not a JSON")
 
@@ -62,17 +52,11 @@ def login():
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
 
-
-# 3rd endppoint - uses JWT
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
-    # -- Usage example --
-    # curl -X GET “http://localhost:5000/jwt-protected” -H “Authorization: Bearer <token_goes_here>”
-
     return "JWT Auth: Access Granted"
 
-# 4th endpoint - uses JWT
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
