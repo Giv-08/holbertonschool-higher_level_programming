@@ -29,6 +29,7 @@ def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
+    return None
 
 @app.route('/basic-protected')
 @auth.login_required
@@ -61,12 +62,9 @@ def jwt_protected():
 @jwt_required()
 def admin_only():
     current_user = get_jwt_identity()
-
     if current_user not in users or users[current_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-
     return "Admin Access: Granted"
-
 
 # JWT error handler
 @jwt.unauthorized_loader
