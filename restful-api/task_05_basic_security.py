@@ -1,11 +1,13 @@
 #!/usr/bin/python3
+""" Nameless Module for Task 5 """
+
 from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'mali-and-mirin'
+app.config["JWT_SECRET_KEY"] = "mali-and-mirin"
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
@@ -15,8 +17,8 @@ users = {
         "password": generate_password_hash("password"),
         "role": "user"
     },
-    "admin": {
-        "username": "admin",
+    "admin1": {
+        "username": "admin1",
         "password": generate_password_hash("password"),
         "role": "admin"
     }
@@ -37,7 +39,7 @@ def basic_protected():
 @app.route("/login", methods=["POST"])
 def login():
     if request.get_json() is None:
-        abort(400, "Not a json file")
+        abort(400, "Not a JSON")
 
     data = request.get_json()
 
@@ -46,7 +48,7 @@ def login():
             abort(400, "Missing attribute {}.".format(k))
 
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
-        return jsonify({"msg": "Wrong username or password"}), 401
+        return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
