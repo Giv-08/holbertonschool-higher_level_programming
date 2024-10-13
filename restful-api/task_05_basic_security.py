@@ -15,8 +15,8 @@ users = {
         "password": generate_password_hash("password"),
         "role": "user"
     },
-    "admin1": {
-        "username": "admin1",
+    "admin": {
+        "username": "admin",
         "password": generate_password_hash("password"),
         "role": "admin"
     }
@@ -33,8 +33,6 @@ def verify_password(username, password):
 def basic_protected():
     return "Basic Auth: Access Granted"
 
-
-# 2nd endpoint - returns JWT
 @app.route("/login", methods=["POST"])
 def login():
     if request.get_json() is None:
@@ -42,9 +40,9 @@ def login():
 
     data = request.get_json()
 
-    for k in ["username", "password"]:
-        if k not in data:
-            abort(400, "Missing attribute {}.".format(k))
+    # for k in ["username", "password"]:
+    #     if k not in data:
+    #         abort(400, "Missing attribute {}.".format(k))
 
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
