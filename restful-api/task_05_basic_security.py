@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-""" Nameless Module for Task 5 """
-
 from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
