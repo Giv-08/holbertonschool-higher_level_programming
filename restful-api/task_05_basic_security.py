@@ -1,15 +1,12 @@
-#!/usr/bin/python3
-""" Nameless Module for Task 5 """
-
-from flask import Flask, jsonify, request, abort
+from flask import Flask, abort, request, jsonify
 from flask_httpauth import HTTPBasicAuth
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = '12345abcde'
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
+app.config["JWT_SECRET_KEY"] = "its_super_secret_Holberton"
 
 users = {
     "user1": {
@@ -24,50 +21,54 @@ users = {
     }
 }
 
-# 1st endpoint - no JWT needed
+print(generate_password_hash("password"))
+
 @auth.verify_password
 def verify_password(username, password):
-    users = users.get(username)
-    if users and check_password_hash(users['password'], password):
-        return users
+    if username in users and check_password_hash(users[username]["password"], password):
+        return username
 
 @app.route('/basic-protected')
 @auth.login_required
-def basic_protected():
+def basic_auth():
     return "Basic Auth: Access Granted"
 
-@app.route("/login", methods=["POST"])
+@app.route('/login', methods=["POST"])
 def login():
     if request.get_json() is None:
         abort(400, "Not a JSON")
 
     data = request.get_json()
 
-    # for k in ["username", "password"]:
-    #     if k not in data:
-    #         abort(400, "Missing attribute {}.".format(k))
+    for k in ["username", "password"]:
+        if k not in data:
+            abort(400, f"Missing attribute {k}.")
 
-    if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
-        return jsonify({"msg": "Wrong username or password"}), 401
+    username = data.get("username")
+    password = data.get("password")
+
+    if username not in users or not check_password_hash(users[username]["password"], password):
+        return jsonify({"msg":'Invalid credentials'}), 401
 
     access_token = create_access_token(identity=data["username"])
-    return jsonify({"access_token": access_token})
+    return jsonify({'access_token': access_token})
 
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
     return "JWT Auth: Access Granted"
 
-@app.route("/admin-only")
+@app.route('/admin-only', methods=["GET"])
 @jwt_required()
 def admin_only():
-    current_user = get_jwt_identity()
-    if current_user not in users or users[current_user]["role"] != "admin":
+    actual_user = get_jwt_identity()
+
+    if actual_user not in users or users[actual_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
+
     return "Admin Access: Granted"
 
-
-# JWT errors handlers
+# JWT  erros handlers
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
@@ -88,6 +89,7 @@ def handle_revoked_token_error(err):
 def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
 
-if __name__ == "__main__":
-    # app.run(host='localhost', port=5000, debug=True)
+
+if __name__ == '__main__':
     app.run()
+    #app.run(host='localhost', port=5000, debug=True)
