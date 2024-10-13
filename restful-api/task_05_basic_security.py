@@ -1,11 +1,13 @@
-#!/usr/#!/usr/bin/python3
+#!/usr/bin/python3
+""" Nameless Module for Task 5 """
+
 from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "abcde"
+app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
@@ -15,15 +17,19 @@ users = {
         "password": generate_password_hash("password"),
         "role": "user"
     },
-    "admin": {
-        "username": "admin",
+    "admin1": {
+        "username": "admin1",
         "password": generate_password_hash("password"),
         "role": "admin"
     }
 }
 
+# 1st endpoint - no JWT needed
 @auth.verify_password
 def verify_password(username, password):
+    # -- Usage example --
+    # curl -X GET "http://localhost:5000/basic-protected" --user user1:password
+
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return user
@@ -33,8 +39,14 @@ def verify_password(username, password):
 def basic_protected():
     return "Basic Auth: Access Granted"
 
+
+# 2nd endpoint - returns JWT
 @app.route("/login", methods=["POST"])
 def login():
+    """ login """
+    # -- Usage example --
+    # curl -X POST localhost:5000/login -H "Content-Type: application/json" -d '{"username":"user1","password":"password"}'
+
     if request.get_json() is None:
         abort(400, "Not a JSON")
 
@@ -50,15 +62,25 @@ def login():
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
 
+
+# 3rd endppoint - uses JWT
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
+    # -- Usage example --
+    # curl -X GET “http://localhost:5000/jwt-protected” -H “Authorization: Bearer <token_goes_here>”
+
     return "JWT Auth: Access Granted"
 
 # 4th endpoint - uses JWT
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
+    """ Only for admin role users """
+    # -- Usage example --
+    # curl -X GET “http://localhost:5000/admin-only” -H “Authorization: Bearer <token_goes_here>”
+    # NOTE: the token you use must be from a logged-in 'admin' user
+
     current_user = get_jwt_identity()
 
     if current_user not in users or users[current_user]["role"] != "admin":
