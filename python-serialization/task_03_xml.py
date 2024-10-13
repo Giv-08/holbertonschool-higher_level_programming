@@ -3,7 +3,6 @@
 deserialization using XML as an alternative format to JSON
 """
 import xml.etree.ElementTree as ET
-from xml.dom import minidom
 
 
 def serialize_to_xml(dictionary, filename):
