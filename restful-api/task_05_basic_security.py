@@ -40,9 +40,9 @@ def login():
 
     data = request.get_json()
 
-    for x in ["username", "password"]:
-        if x not in data:
-            abort(400, "Missing attribute {}.".format(x))
+    for k in ["username", "password"]:
+        if k not in data:
+            abort(400, "Missing attribute {}.".format(k))
 
     if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
