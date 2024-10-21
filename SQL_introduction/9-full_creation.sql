@@ -5,7 +5,7 @@ CREATE TABLE second_table (
   score INT
 );
 
-INSERT INTO second_table (id, name, score)
+INSERT OR IGNORE INTO second_table (id, name, score)
 VALUES (1, 'John', 10),
       (2, 'Alex', 3),
       (3, 'Bob', 14),
