@@ -1,11 +1,11 @@
 -- Creates a table second_table in the database hbtn_0c_0
-CREATE TABLE second_table (
+CREATE TABLE IF NOT EXIST second_table (
   id INT PRIMARY KEY,
   name VARCHAR(256),
   score INT
 );
 
-INSERT IGNORE INTO second_table (id, name, score)
+INSERT INTO second_table (id, name, score)
 VALUES (1, 'John', 10),
       (2, 'Alex', 3),
       (3, 'Bob', 14),
