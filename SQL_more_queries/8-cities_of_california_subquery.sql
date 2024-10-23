@@ -4,4 +4,4 @@ SELECT id INTO @california_id FROM states
 WHERE name = 'California';
 SELECT id, name FROM cities
 WHERE state_id = @california_id
-ORDER BY cities.id ASC;
+ORDER BY id ASC;
