@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" This module is for listing all states using MySQLdb"""
 
 if __name__ == "__main__":
     import MySQLdb
