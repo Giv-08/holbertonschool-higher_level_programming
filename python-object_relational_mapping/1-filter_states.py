@@ -21,4 +21,5 @@ if __name__ == "__main__":
     for n in n_states:
         print(n)
 
+    cursor.close()
     db_connection.close()
