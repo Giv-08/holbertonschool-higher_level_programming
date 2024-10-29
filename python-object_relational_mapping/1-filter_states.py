@@ -13,7 +13,9 @@ if __name__ == "__main__":
         )
 
     cursor = db_connection.cursor()
-    cursor.execute("SELECT * FROM states WHERE name LIKE UPPER('N%') ORDER BY id ASC")
+    cursor.execute(
+        "SELECT * FROM states WHERE name LIKE UPPER('N%') ORDER BY id ASC"
+        )
     n_states = cursor.fetchall()
 
     for n in n_states:
