@@ -1,4 +1,4 @@
-# !/usr/bin/python3
+#!/usr/bin/python3
 """ This module is a state model class"""
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
