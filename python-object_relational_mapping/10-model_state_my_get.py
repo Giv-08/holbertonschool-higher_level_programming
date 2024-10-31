@@ -22,9 +22,10 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
 
     states = session.query(State).filter(State.name == name_search).all()
-    if State.name is not name_search:
+    if not states:
         print("Not found")
-    for state in states:
-        print(state.id)
+    else:
+        for state in states:
+            print(state.id)
 
     session.close()
