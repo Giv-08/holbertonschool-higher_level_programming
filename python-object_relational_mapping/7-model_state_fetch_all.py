@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" This module is for listing all State objects from the database hbtn_0e_6_usa
+""" This module is for listing all State objects
+from the database hbtn_0e_6_usa
 """
 from sqlalchemy.orm import sessionmaker
 import sys
@@ -11,7 +12,9 @@ if __name__ == "__main__":
     password = sys.argv[2]
     db_name = sys.argv[3]
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3])
+        )
 
     Session = sessionmaker(bind=engine)
     session = Session()
