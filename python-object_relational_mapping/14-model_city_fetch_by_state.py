@@ -23,6 +23,6 @@ if __name__ == "__main__":
 
     cities = session.query(City).join(State).order_by(City.id).all()
     for s in cities:
-        print(f"{s.state.name}: ({s.state_id}) {s.name}")
+        print(f"{s.state.name}: ({s.id}) {s.name}")
 
     session.close()
