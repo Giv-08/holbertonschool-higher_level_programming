@@ -2,16 +2,16 @@ import os
 
 def generate_invitations(template, attendees):
     if not isinstance(template, str):
-        raise TypeError("Template is not string")
+        print("Template is not string")
 
     if not isinstance(attendees, list) or not all(isinstance(attendee, dict)for attendee in attendees):
-        raise TypeError("Attendees is not list of dictionaries")
+        print("Attendees is not list of dictionaries")
 
     if not template:
-        raise ValueError("Template is empty, no output files generated.")
+        print("Template is empty, no output files generated.")
 
     if not attendees:
-        raise ValueError("No data provided, no output files generated.")
+        print("No data provided, no output files generated.")
 
     for index, attendee in enumerate(attendees, start=1):
         try:
@@ -25,7 +25,7 @@ def generate_invitations(template, attendees):
             file_name = f"output_{index}.txt"
 
             if os.path.exists(file_name):
-                raise FileExistsError("File already exists!")
+                raise print("File already exists!")
 
             with open(file_name, 'w') as file:
                 file.write(new_template)
