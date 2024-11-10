@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Items List</title>
 </head>
 <body>
-  {% for item in items -%}
-    <ul>
-    {% if not items %}
-        <li>{{ item }}</li>
-    {% else %}
-        <li>No items found</li>
-    </ul>
-    {% endif %}
-  {%- endfor %}
+  <h1>Items List</h1>
+  {% if items %}
+  <ul>
+    {% for item in items -%}
+    <li>{{ item }}</li>
+    {%- endfor %}
+  </ul>
+  {% else %}
+    <p>No items found</p>
+  {% endif %}
 </body>
 </html>
