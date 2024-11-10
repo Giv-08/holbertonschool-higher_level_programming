@@ -30,4 +30,4 @@ def generate_invitations(template, attendees):
                 file.write(new_template)
 
         except Exception as error:
-            raise ValueError("{attendee[i]}: {error}")
+            print(f"{index}: {error}")
