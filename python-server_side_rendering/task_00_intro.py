@@ -22,12 +22,16 @@ def generate_invitations(template, attendees):
             new_template = new_template.replace("{event_date}", attendee.get("event_date", "N/A"))
             new_template = new_template.replace("{event_location}", attendee.get("event_location", "N/A"))
 
+            # file_name = f"output_{index}.txt"
+            # if os.path.exists(file_name):
+            #     print("File already exists!")
+
+            # with open("file_name", 'w') as file:
+            #     file.write(new_template)
             file_name = f"output_{index}.txt"
-            if os.path.exists(file_name):
-                print("File already exists!")
-
-            with open("file_name", 'w') as file:
+            print(f"Generating file: {file_name}")  # Log file generation
+            with open(file_name, 'w') as file:
                 file.write(new_template)
-
+                print(f"File {file_name} written successfully")
         except Exception as error:
             print(f"{index}: {error}")
