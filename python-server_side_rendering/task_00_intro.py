@@ -1,4 +1,4 @@
-import os
+import os, sys
 
 def generate_invitations(template, attendees):
     if not isinstance(template, str):
@@ -9,9 +9,11 @@ def generate_invitations(template, attendees):
 
     if not template:
         print("Template is empty, no output files generated.")
+        sys.exit()
 
     if not attendees:
         print("No data provided, no output files generated.")
+        sys.exit()
 
     for index, attendee in enumerate(attendees, start=1):
         try:
