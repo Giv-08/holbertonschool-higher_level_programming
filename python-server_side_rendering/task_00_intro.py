@@ -7,10 +7,10 @@ def generate_invitations(template, attendees):
     if not isinstance(attendees, list) and not all(isinstance(attendee, dict)for attendee in attendees):
         raise TypeError("Attendees is not list of dictionaries")
 
-    if template is None:
+    if not template:
         raise ValueError("Template is empty, no output files generated.")
 
-    if attendees is None:
+    if not attendees:
         raise ValueError("No data provided, no output files generated.")
 
     for index, attendee in enumerate(attendees, start=1):
