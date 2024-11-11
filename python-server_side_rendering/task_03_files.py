@@ -43,34 +43,29 @@ def read_csv():
 # route /products
 @app.route('/products', methods=['GET'])
 def products():
-    source = request.args.get('source', '').lower()
-    product_id = request.args.get('id')
 
-    # Validate the source parameter
+    source = request.args.get('source').lower()
+    p_id = request.args.get('id')
+
     if source not in ['json', 'csv']:
         error_message = "Wrong source"
         return render_template('product_display.html', error=error_message)
 
-    # Read data based on source
     if source == 'json':
-        products = read_json()
+        products = read_json
+    elif source == 'csv':
+        products = read_csv
     else:
-        products = read_csv()
+        return render_template('product_display.html', "Wrong source")
 
-    # Filter by product id if provided
-    if product_id:
-        product_found = False
-        filtered_products = []
-        for product in products:
-            if str(product.get('id')) == product_id:
-                filtered_products.append(product)
-                product_found = True
-        if not product_found:
-            error_message = "Product not found"
-            return render_template('product_display.html', error=error_message)
-        products = filtered_products
-
-    return render_template('product_display.html', products=products)
+    if p_id:
+        try:
+            p_id = int(p_id)
+            products = [product for product in products if str(product['id']) == p_id]
+            if not products:
+                return render_template('product_display.html', "Product not found")
+        except ValueError:
+            return render_template('product_display.html', "Id invalid")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
