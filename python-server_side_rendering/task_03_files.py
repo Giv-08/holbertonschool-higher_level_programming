@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import json, csv
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def items():
 def read_json():
     with open('products.json', 'r') as file:
         data = json.load(file)
-    return data
+    return jsonify(data)
 # read csv
 def read_csv():
     with open('products.csv', 'r') as file:
