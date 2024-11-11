@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import sqlite3
 import json, csv
 
 app = Flask(__name__)
@@ -37,6 +38,25 @@ def read_csv():
         for row in csv_file:
             product_list.append(row)
     return product_list
+# read sql
+def read_sql(p_id=None):
+    try:
+        database = sqlite3.connect('products.db')
+        cursor = database.cursor()
+
+        if p_id:
+            cursor.execute("SELECT * FROM products WHERE id=?", (p_id,))
+        else:
+            cursor.execute("SELECT * FROM products")
+
+        products = cursor.fetchall()
+        product_list = [{'id': product[0], 'name': product[1], 'category': product[2], 'price': product[3]} for product in products]
+        return product_list
+    except sqlite3.Error as error:
+        print(f"Error: {error}")
+        return None
+    finally:
+        database.close()
 
 # route /products
 @app.route('/products', methods=['GET'])
@@ -51,6 +71,8 @@ def products():
         products = read_json()
     elif source == 'csv':
         products = read_csv()
+    elif source == 'sql':
+        products = read_sql(p_id)
 
     if p_id:
         try:
