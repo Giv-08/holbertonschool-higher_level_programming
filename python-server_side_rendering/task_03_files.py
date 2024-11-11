@@ -48,13 +48,12 @@ def products():
     p_id = request.args.get('id')
 
     if source not in ['json', 'csv']:
-        error_message = "Wrong source"
-        return render_template('product_display.html', error=error_message)
+        return render_template('product_display.html', error="Wrong source")
 
     if source == 'json':
-        products = read_json
+        products = read_json()
     elif source == 'csv':
-        products = read_csv
+        products = read_csv()
     else:
         return render_template('product_display.html', "Wrong source")
 
