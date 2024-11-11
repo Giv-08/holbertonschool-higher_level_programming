@@ -43,7 +43,6 @@ def read_csv():
 # route /products
 @app.route('/products', methods=['GET'])
 def products():
-
     source = request.args.get('source').lower()
     p_id = request.args.get('id')
 
@@ -58,12 +57,16 @@ def products():
     if p_id:
         try:
             p_id = int(p_id)
-            products = [product for product in products if str(product['id']) == p_id]
-            if not products:
+            filtered_products = [product for product in products if product['id'] == p_id]
+
+            if not filtered_products:
                 return render_template('product_display.html', error="Product not found")
         except ValueError:
             return render_template('product_display.html', error="Invalid product id")
-    return render_template('product_display.html', products=products)
+    else:
+        filtered_products = products
+
+    return render_template('product_display.html', products=filtered_products)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
