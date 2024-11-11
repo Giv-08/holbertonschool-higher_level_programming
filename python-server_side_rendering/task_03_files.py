@@ -54,17 +54,16 @@ def products():
         products = read_json()
     elif source == 'csv':
         products = read_csv()
-    else:
-        return render_template('product_display.html', "Wrong source")
 
     if p_id:
         try:
             p_id = int(p_id)
             products = [product for product in products if str(product['id']) == p_id]
             if not products:
-                return render_template('product_display.html', "Product not found")
+                return render_template('product_display.html', error="Product not found")
         except ValueError:
-            return render_template('product_display.html', "Id invalid")
+            return render_template('product_display.html', error="Invalid product id")
+    return render_template('product_display.html', products=products)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
