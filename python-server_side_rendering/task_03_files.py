@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import json, csv
 
 app = Flask(__name__)
@@ -26,42 +26,57 @@ def items():
 
 # read json
 def read_json():
-    with open('products.json', 'r') as file:
-        data = json.load(file)
-    return jsonify(data)
-# read csv
+    try:
+        with open('products.json', 'r') as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        print(f"Error reading JSON file: {e}")
+        return []
+
+# Function to read CSV data
 def read_csv():
-    with open('products.csv', 'r') as file:
-        product_list = []
-        csv_file = csv.DictReader(file)
-        for row in csv_file:
-            row['id'] = int(row['id'])
-            row['price'] = int(row['price'])
-            product_list.append(row)
-    return product_list
+    try:
+        products = []
+        with open('products.csv', newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                products.append(row)
+        return products
+    except Exception as e:
+        print(f"Error reading CSV file: {e}")
+        return []
 
-# route /products
-@app.route('/products')
+@app.route('/products', methods=['GET'])
 def products():
+    source = request.args.get('source', '').lower()
+    product_id = request.args.get('id')
 
-    source = request.args.get('source')
-    p_id = request.args.get('p_id')
+    # Validate the source parameter
+    if source not in ['json', 'csv']:
+        error_message = "Wrong source"
+        return render_template('product_display.html', error=error_message)
 
+    # Read data based on source
     if source == 'json':
-        products = read_json
-    elif source == 'csv':
-        products = read_csv
+        products = read_json()
     else:
-        return render_template('product_display.html', "Wrong source")
+        products = read_csv()
 
-    if p_id:
-        try:
-            p_id = int(p_id)
-            products = [product for product in products if product['id'] == p_id]
-            if not products:
-                return render_template('product_display.html', "Product not found")
-        except ValueError:
-            return render_template('product_display.html', "Id invalid")
+    # Filter by product id if provided
+    if product_id:
+        product_found = False
+        filtered_products = []
+        for product in products:
+            if str(product.get('id')) == product_id:
+                filtered_products.append(product)
+                product_found = True
+        if not product_found:
+            error_message = "Product not found"
+            return render_template('product_display.html', error=error_message)
+        products = filtered_products
+
+    return render_template('product_display.html', products=products)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
