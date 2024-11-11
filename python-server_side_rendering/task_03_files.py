@@ -35,8 +35,6 @@ def read_csv():
         product_list = []
         csv_file = csv.DictReader(file)
         for row in csv_file:
-            # row['id'] = int(row['id'])
-            # row['price'] = int(row['price'])
             product_list.append(row)
     return product_list
 

@@ -6,6 +6,9 @@
   <title>Product Display</title>
 </head>
 <body>
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
   <h1>Product lists</h2>
   {% if products %}
   <table>
