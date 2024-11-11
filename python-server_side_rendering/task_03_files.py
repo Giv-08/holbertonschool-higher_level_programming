@@ -25,20 +25,41 @@ def items():
     return render_template('items.html', items=item_list)
 
 # read json
+# def read_json():
+#     with open('products.json', 'r') as file:
+#         data = json.load(file)
+#     return data
+# # read csv
+# def read_csv():
+#     with open('products.csv', newline='', encoding='utf-8') as file:
+#         product_list = []
+#         csv_file = csv.DictReader(file)
+#         for row in csv_file:
+#             # row['id'] = int(row['id'])
+#             # row['price'] = int(row['price'])
+#             product_list.append(row)
+#     return product_list
 def read_json():
-    with open('products.json', 'r') as file:
-        data = json.load(file)
-    return data
-# read csv
+    try:
+        with open('products.json', 'r') as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        print(f"Error reading JSON file: {e}")
+        return []
+
+# Function to read CSV data
 def read_csv():
-    with open('products.csv', newline='', encoding='utf-8') as file:
-        product_list = []
-        csv_file = csv.DictReader(file)
-        for row in csv_file:
-            # row['id'] = int(row['id'])
-            # row['price'] = int(row['price'])
-            product_list.append(row)
-    return product_list
+    try:
+        products = []
+        with open('products.csv', newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                products.append(row)
+        return products
+    except Exception as e:
+        print(f"Error reading CSV file: {e}")
+        return []
 
 # route /products
 @app.route('/products', methods=['GET'])
@@ -54,8 +75,6 @@ def products():
         products = read_json
     elif source == 'csv':
         products = read_csv
-    else:
-        return render_template('product_display.html', "Wrong source")
 
     if p_id:
         product_found = False
