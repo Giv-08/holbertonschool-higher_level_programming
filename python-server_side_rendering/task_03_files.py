@@ -45,7 +45,7 @@ def read_csv():
 def products():
 
     source = request.args.get('source')
-    p_id = request.args.get('p_id')
+    p_id = request.args.get('id')
 
     if source == 'json':
         products = read_json
