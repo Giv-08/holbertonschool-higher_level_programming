@@ -44,7 +44,7 @@ def read_csv():
             product_list.append(row)
     return product_list
 
-# route /source
+# route /products
 @app.route('/products')
 def products():
 
@@ -65,7 +65,7 @@ def products():
             if not products:
                 return render_template('product_display.html', "Product not found")
         except ValueError:
-            return render_template('product_display.html', "Product not found")
+            return render_template('product_display.html', "Id invalid")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
