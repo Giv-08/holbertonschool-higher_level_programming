@@ -44,8 +44,11 @@ def read_csv():
 @app.route('/products', methods=['GET'])
 def products():
 
-    source = request.args.get('source')
+    source = request.args.get('source').lower()
     p_id = request.args.get('id')
+
+    if source not in ['json', 'csv']:
+        return render_template('product_display.html', "Wrong source")
 
     if source == 'json':
         products = read_json
@@ -55,13 +58,18 @@ def products():
         return render_template('product_display.html', "Wrong source")
 
     if p_id:
-        try:
-            p_id = int(p_id)
-            products = [product for product in products if product['id'] == p_id]
-            if not products:
-                return render_template('product_display.html', "Product not found")
-        except ValueError:
-            return render_template('product_display.html', "Id invalid")
+        product_found = False
+        filtered_products = []
+        for product in products:
+            if str(product.get('id')) == p_id:
+                filtered_products.append(product)
+                product_found = True
+        if not product_found:
+            error_message = "Product not found"
+            return render_template('product_display.html', error=error_message)
+        products = filtered_products
+
+    return render_template('product_display.html', products=products)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
