@@ -24,13 +24,9 @@ def items():
     # "items" can be accessed in items.html
     return render_template('items.html', items=item_list)
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 # read json
 def read_json():
-    with open('.templates/products.json', 'r') as file:
+    with open('products.json', 'r') as file:
         data = json.load(file)
     return data
 # read csv
@@ -56,7 +52,7 @@ def products():
     elif source == 'csv':
         products = read_csv
     else:
-        return render_template('contact.html', "Wrong source")
+        return render_template('product_display.html', "Wrong source")
 
     if p_id:
         try:
