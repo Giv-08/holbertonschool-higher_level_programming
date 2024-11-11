@@ -25,62 +25,44 @@ def items():
     return render_template('items.html', items=item_list)
 
 # read json
-# def read_json():
-#     with open('products.json', 'r') as file:
-#         data = json.load(file)
-#     return data
-# # read csv
-# def read_csv():
-#     with open('products.csv', newline='', encoding='utf-8') as file:
-#         product_list = []
-#         csv_file = csv.DictReader(file)
-#         for row in csv_file:
-#             # row['id'] = int(row['id'])
-#             # row['price'] = int(row['price'])
-#             product_list.append(row)
-#     return product_list
 def read_json():
-    try:
-        with open('products.json', 'r') as f:
-            data = json.load(f)
-        return data
-    except Exception as e:
-        print(f"Error reading JSON file: {e}")
-        return []
-
-# Function to read CSV data
+    with open('products.json', 'r') as file:
+        data = json.load(file)
+    return data
+# read csv
 def read_csv():
-    try:
-        products = []
-        with open('products.csv', newline='', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                products.append(row)
-        return products
-    except Exception as e:
-        print(f"Error reading CSV file: {e}")
-        return []
+    with open('products.csv', newline='', encoding='utf-8') as file:
+        product_list = []
+        csv_file = csv.DictReader(file)
+        for row in csv_file:
+            # row['id'] = int(row['id'])
+            # row['price'] = int(row['price'])
+            product_list.append(row)
+    return product_list
 
 # route /products
 @app.route('/products', methods=['GET'])
 def products():
+    source = request.args.get('source', '').lower()
+    product_id = request.args.get('id')
 
-    source = request.args.get('source').lower()
-    p_id = request.args.get('id')
-
+    # Validate the source parameter
     if source not in ['json', 'csv']:
-        return render_template('product_display.html', "Wrong source")
+        error_message = "Wrong source"
+        return render_template('product_display.html', error=error_message)
 
+    # Read data based on source
     if source == 'json':
-        products = read_json
-    elif source == 'csv':
-        products = read_csv
+        products = read_json()
+    else:
+        products = read_csv()
 
-    if p_id:
+    # Filter by product id if provided
+    if product_id:
         product_found = False
         filtered_products = []
         for product in products:
-            if str(product.get('id')) == p_id:
+            if str(product.get('id')) == product_id:
                 filtered_products.append(product)
                 product_found = True
         if not product_found:
