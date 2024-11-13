@@ -39,7 +39,7 @@ def read_csv():
     return product_list
 
 # route /products
-@app.route('/products', methods=['GET'])
+@app.route('/products')
 def products():
     source = request.args.get('source').lower()
     p_id = request.args.get('id')
