@@ -76,7 +76,7 @@ def products():
 
     if p_id:
         try:
-            p_id = int(p_id) # convert type to use in loop
+            # p_id = int(p_id) # convert type to use in loop
             filtered_products = [product for product in products if product['id'] == p_id]
 
             if not filtered_products:
