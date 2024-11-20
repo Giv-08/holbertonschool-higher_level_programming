@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import sqlite3, os
+import sqlite3
 import json, csv
 
 app = Flask(__name__)
@@ -22,8 +22,8 @@ def items():
         data = json.load(file)
 
         item_list = data.get("items", [])
-    # "items" can be accessed in items.html
     return render_template('items.html', items=item_list)
+    # "items" can be used in items.html
 
 # read json
 def read_json():
@@ -77,7 +77,7 @@ def products():
     if p_id:
         try:
             # p_id = int(p_id) # convert type to use in loop
-            filtered_products = [product for product in products if product['id'] == p_id]
+            filtered_products = [product for product in products if str(product['id']) == p_id]
 
             if not filtered_products:
                 return render_template('product_display.html', error="Product not found")
